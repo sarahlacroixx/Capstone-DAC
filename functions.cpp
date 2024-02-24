@@ -11,7 +11,8 @@ c3 = 2.019202697e-07;
 void stepperMotorsClose(){
     //change pin number depending on limit switch pin
     while digitalRead(7) == LOW {
-      motor.runSpeed();
+      motor1.runSpeed();
+        motor.runSpeed();
     }
     
 }
