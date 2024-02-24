@@ -104,6 +104,7 @@ void loop() {
       if currentTemp > 120 && currentTemp < 130 {
         millis(); //delay for specific amount of time
     }
+    
   }
     
   
