@@ -40,13 +40,9 @@ void setup() {
 
   //set stepper motors
   motor1.setMaxSpeed(1000);
-  motor1.setAcceleration(60);
   motor1.setSpeed(200);
-  motor1.moveTo(80); //adjust this to move correct position
   motor2.setMaxSpeed(1000);
-  motor2.setAcceleration(60);
   motor2.setSpeed(200);
-  motor2.moveTo(80); //adjust this to move correct position
 
   //set up I2C devices
   Wire.begin(6,7); //change to pins of lcd screen
