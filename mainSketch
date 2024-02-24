@@ -1,9 +1,127 @@
+#include <AccelStepper.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// create timer
+long now = millis();
+long lastTrigger = 0;
+boolean startTimer = false;
+
+//need to make this buttons on LED screen
+const int startButton = 0;
+const int stopButton = 0;
+
+bool startTrigger = false;
+
+//stepper motor pins
+const int DIR1 = 0;
+const int STEP1 = 0;
+const int DIR2 = 0;
+const int STEP2 = 0;
+
+#define motorInterfaceType 1
+AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
+AccelStepper motor1(motorInterfaceType, STEP2, DIR2);
+
+//LCD display
+int lcdColumns = 16;
+int lcdRows = 2;
+
+LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows); //0x27 is address for lcd
+
+#include "functions.h"
+
+
 void setup() {
-  // put your setup code here, to run once:
+  pinMode(startButton, INPUT);
+  pinMode(stopButton, INPUT);
+
+  //set stepper motors
+  motor1.setMaxSpeed(1000);
+  motor1.setAcceleration(60);
+  motor1.setSpeed(200);
+  motor1.moveTo(80); //adjust this to move correct position
+  motor2.setMaxSpeed(1000);
+  motor2.setAcceleration(60);
+  motor2.setSpeed(200);
+  motor2.moveTo(80); //adjust this to move correct position
+
+  //set up I2C devices
+  Wire.begin(6,7); //change to pins of lcd screen
+
+  //set lcd screen
+  lcd.init()
+  lcd.backlight();
+
+  // set interrupts
+  attachInterrupt(digitalPinToInterrupt(startButton), detectStart, RISING);
+  attachInterrupt(digitalPinToInterrupt(stopButton), detectStop, RISING);
+
+  // temperature sensor things
+  Serial.begin(115200);
+  Wire.begin(6,7); //Join I2C Bus (NEED TO CHANGE THIS TO NOT INTERFERE WITH LCD)
+
+  if(!sensor0.begin())
+  {
+    Serial.println("Cannot connect to TMP102.");
+    Serial.println("Is the board connected? Is the device ID correct?");
+    while(1);
+  }
+
+  Serial.println("Connected to TMP102!");
+  delay(100);
+
+  sensor0.setAlertMode(0); // Comparator Mode.
+
+  // set the Conversion Rate (how quickly the sensor gets a new reading)
+  //0-3: 0:0.25Hz, 1:1Hz, 2:4Hz, 3:8Hz
+  sensor0.setConversionRate(2);
+
+  //set Extended Mode.
+  //0:12-bit Temperature(-55C to +128C) 1:13-bit Temperature(-55C to +150C)
+  sensor0.setExtendedMode(1);
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  while startTrigger = true {
+    //start code here
+    //move stepper motor
+    lcdDisplayStarting()
+  
+    //need to add in what level of CO2 is needed
+    while CO2() != 0 {
+      startFans();
+      CO2 = checkCO2();
+    }
+    
+    stepperMotorsClose();
+    currentTemp = checkTherms();
+    while currentTemp < 120 {
+      //apply heat using bang bang control
+      lcdDisplay(currentTemp, CO2);
+      currentTemp = checkTherms();
+      CO2 = checkCO2();
+      if currentTemp > 120 && currentTemp < 130 {
+        millis(); //delay for specific amount of time
+    }
+  }
+    
+  
+    startTimer = true;
+    lastTrigger = millis();
+  }
+  startTrigger = false;
 
 }
+
+void IRAM_ATTR detectStart(){
+  startTrigger = true;
+ 
+
+}
+
+void IRAM_ATTR detectStop(){
+}
+
