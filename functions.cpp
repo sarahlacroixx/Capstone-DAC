@@ -52,6 +52,11 @@ int checkTherms() {
 
 }
 
-int turnPumpOn(){
+void openValve(){
 }
+
+void turnPumpOn(){
+}
+
+
 
