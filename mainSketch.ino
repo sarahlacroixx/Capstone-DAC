@@ -104,16 +104,23 @@ void loop() {
       if currentTemp > 120 && currentTemp < 130 {
         millis(); //delay for specific amount of time
     }
-    
+    //need to add a function to display that it's now removing the co2 from chamber
+    openValve();
+    startCompressor():
+    millis(); //delay
+    stopCompressor();
+    closeValve();
+
+    //need to add a function to display the removed CO2
+    startTrigger = false;
   }
     
   
     startTimer = true;
     lastTrigger = millis();
-  }
-  startTrigger = false;
-
 }
+  
+
 
 void IRAM_ATTR detectStart(){
   startTrigger = true;
