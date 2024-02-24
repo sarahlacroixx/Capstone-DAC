@@ -9,11 +9,11 @@ c2 = 2.378405444e-04;
 c3 = 2.019202697e-07;
 
 void stepperMotorsClose(){
-  if (motor1.distanceToGo() == 0 && motor2.distanceToGo() == 0) {
-      motor1.moveTo(-motor1.currentPosition());
-      motor2.moveTo(-motor2.currentPosition());
+    //change pin number depending on limit switch pin
+    while digitalRead(7) == LOW {
+      motor.runSpeed();
     }
-    motor.run();
+    
 }
 
 void lcdDisplay(int currentTemp, int currentCO2){
