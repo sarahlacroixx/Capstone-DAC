@@ -44,7 +44,7 @@ void setup() {
   motor2.setMaxSpeed(1000);
   motor2.setSpeed(200);
 
-  //set up I2C devices
+  //set up I2C devices (needs to set up lcd, CO2, and temp sensor for inside elec box
   Wire.begin(6,7); //change to pins of lcd screen
 
   //set lcd screen
