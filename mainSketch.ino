@@ -2,6 +2,8 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
+#define ADDR_6713  0x15
+
 // create timer
 long now = millis();
 long lastTrigger = 0;
