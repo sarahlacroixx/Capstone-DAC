@@ -1,6 +1,13 @@
 //place functions here
 #include "functions.h"
 
+float R1 = 10000;
+float logR2, R2, T;
+//these values need to be fixed
+float c1 = 1.009249522e-03;
+c2 = 2.378405444e-04;
+c3 = 2.019202697e-07;
+
 void stepperMotorsClose(){
   if (motor1.distanceToGo() == 0 && motor2.distanceToGo() == 0) {
       motor1.moveTo(-motor1.currentPosition());
@@ -81,14 +88,36 @@ int checkTempElecBox() {
 }
 
 int checkTherms() {
-  
+  int16_t adc0, adc1, adc2, adc3;
+
+  adc0 = ads1015.readADC_SingleEnded(0);
+  adc1 = ads1015.readADC_SingleEnded(1);
+  adc2 = ads1015.readADC_SingleEnded(2);
+  adc3 = ads1015.readADC_SingleEnded(3);
+
+  //test this out to see if it works then copy paste for the rest
+  R2 = R1 * (1023.0 / (float)adc0 - 1.0);
+  logR2 = log(R2);
+  T = (1.0 / (c1 + c2*logR2 + c3*logR2*logR2*logR2));
+  T = T - 273.15; //in farenheight
+  T = (T * 9.0)/ 5.0 + 32.0; 
 
 }
 
 void openValve(){
+  digitalWrite(valve, HIGH);
+}
+
+void closeValve(){
+  digitalWrite(valve, LOW);
 }
 
 void turnPumpOn(){
+  digitalWrite(pump, HIGH);
+}
+
+void turnPumpOff(){
+  digitalWrite(pump, LOW);
 }
 
 
