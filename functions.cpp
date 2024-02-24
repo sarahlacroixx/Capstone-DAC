@@ -1,5 +1,6 @@
 //place functions here
 #include "functions.h"
+//thermister things
 
 float R1 = 10000;
 float logR2, R2, T;
@@ -7,6 +8,10 @@ float logR2, R2, T;
 float c1 = 1.009249522e-03;
 c2 = 2.378405444e-04;
 c3 = 2.019202697e-07;
+
+//CO2 things
+int data [4];
+int CO2ppmValue;
 
 void stepperMotorsClose(){
     //change pin number depending on limit switch pin
