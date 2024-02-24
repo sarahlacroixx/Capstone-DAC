@@ -8,6 +8,7 @@ void stepperMotorsClose();
 void lcdDisplay(int currentTemp, int currentCO2);
 void lcdDisplayStarting();
 void startFans();
+void turnOffFans();
 int checkCO2();
 int checkTempElecBox();
 int checkTherms();
