@@ -1,4 +1,6 @@
 //place functions here
+#include "functions.h"
+
 void stepperMotorsClose(){
   if (motor1.distanceToGo() == 0 && motor2.distanceToGo() == 0) {
       motor1.moveTo(-motor1.currentPosition());
