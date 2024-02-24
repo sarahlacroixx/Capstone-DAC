@@ -11,5 +11,8 @@ void startFans();
 int checkCO2();
 int checkTempElecBox();
 int checkTherms();
+int checkTherms();
+void openValve();
+void turnPumpOn();
 
 #endif
