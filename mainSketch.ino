@@ -88,7 +88,7 @@ void loop() {
   while startTrigger = true {
     //start code here
     //move stepper motor
-    lcdDisplayStarting()
+    lcdDisplayStarting();
   
     //need to add in what level of CO2 is needed
     while CO2() != 0 {
