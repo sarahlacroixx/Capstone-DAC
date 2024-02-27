@@ -158,6 +158,8 @@ void stopPump(){
 }
 
 void startUp(){
+    lcdDisplayStarting();
+    
     while CO2() != 0 {
       startFans();
       CO2 = checkCO2();
