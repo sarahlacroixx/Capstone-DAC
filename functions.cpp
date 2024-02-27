@@ -119,13 +119,13 @@ void hearOFF(int relay){
 }
 
 void startUp(){
-    lcdDisplayStarting();
-    CO2 = checkCO2();
-    //checking for specific amount of CO2
-    while CO2() != 0 {
-        lcdDisplay(currentTemp, CO2);
-        startFans();
-        CO2 = checkCO2();
+    currentCO2 = checkCO2();
+    startFans();
+    //checking for specific amount of CO2 (when it stops increasing?) ->need to do math on this
+    while currentCO2 > prevCO2+1 {
+        lcdDisplay(currentTemp, currentCO2);
+        prevCO2 = currentCO2;
+        currentCO2 = checkCO2();
         currentTemp = checkTherms();
     }
 }
@@ -133,15 +133,11 @@ void startUp(){
 void heating(){
     currentTemp = checkTherms();
     
-    while XXX {
-        if currentTemp < 125 {
-            heatON();
-        }
-        else {
-            heatOFF();
-        }
-      lcdDisplay(currentTemp, CO2);
-      currentTemp = checkTherms();
+    while currentTemp < 125 {
+        heatON();
+        lcdDisplay(currentTemp, CO2);
+        currentTemp = checkTherms();
+        CO2 = checkCO2();
     }
 }
 
