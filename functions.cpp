@@ -29,6 +29,7 @@ void lcdDisplay(int currentTemp, int currentCO2){
 }
 
 void lcdDisplayWaiting(){
+    lcd.clear();
   lcd.setCurser(0, 0);
   lcd.print("Waiting...");
 }
