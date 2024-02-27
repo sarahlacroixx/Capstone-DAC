@@ -47,7 +47,7 @@ void turnOffFans(){
   digitalWrite(fan2, LOW);
 }
 
-int checkCO2(){
+double checkCO2(){
   // start I2C
 
   Wire.beginTransmission(ADDR_6713);
@@ -77,7 +77,7 @@ int checkCO2(){
     return CO2ppmValue;
 }
 
-int checkCO2inTank(){
+double checkCO2inTank(){
     //this code needs to be changed to address the CO2 sensor in the tank rather than the one inside the chamber
     // start I2C
 
@@ -108,7 +108,7 @@ int checkCO2inTank(){
     return CO2ppmValue;
 }
 
-int checkTempElecBox() {
+double checkTempElecBox() {
   float temperature;
 
   // Turn sensor on to start temperature measurement.
@@ -125,7 +125,7 @@ int checkTempElecBox() {
 
 }
 
-int checkTherms() {
+double checkTherms() {
   int16_t adc0, adc1, adc2, adc3;
 
   adc0 = ads1015.readADC_SingleEnded(0);
