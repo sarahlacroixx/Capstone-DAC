@@ -182,4 +182,21 @@ void heating(){
     }
 }
 
+void removeCO2(){
+    openValve();
+    startPump():
+    millis(); //delay
+    stopPump();
+    closeValve();
+}
+
+void coolDown(){
+    currentTemp = checkTherms();
+    while currentTemp > 30{
+        startFans();
+    }
+    turnOffFans();
+}
+    
+
 
