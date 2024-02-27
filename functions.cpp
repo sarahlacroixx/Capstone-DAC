@@ -171,6 +171,15 @@ void startUp(){
 }
 
 void heating(){
+    currentTemp = checkTherms();
+    while currentTemp < 120 {
+      //apply heat using bang bang control
+      lcdDisplay(currentTemp, CO2);
+      currentTemp = checkTherms();
+      CO2 = checkCO2();
+      if currentTemp > 120 && currentTemp < 130 {
+        millis(); //delay for specific amount of time
+    }
 }
 
 
