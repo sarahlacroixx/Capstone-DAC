@@ -2,33 +2,8 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
-#define ADDR_6713  0x15
-
-// create timer
-long now = millis();
-long lastTrigger = 0;
-boolean startTimer = false;
-
-//need to make this buttons on LED screen
-const int startButton = 0;
-const int stopButton = 0;
-const int limitSwitch = 0;
-
-bool startTrigger = false;
-
-//stepper motor pins
-const int DIR1 = 0;
-const int STEP1 = 0;
-const int DIR2 = 0;
-const int STEP2 = 0;
-
-#define motorInterfaceType 1
 AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
 AccelStepper motor1(motorInterfaceType, STEP2, DIR2);
-
-//LCD display
-int lcdColumns = 16;
-int lcdRows = 2;
 
 LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows); //0x27 is address for lcd
 
@@ -36,9 +11,18 @@ LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows); //0x27 is address for lcd
 
 
 void setup() {
+  //start with all pins
+  //buttons and switches
   pinMode(startButton, INPUT);
   pinMode(stopButton, INPUT);
   pinMode(limitSwitch, OUTPUT);
+
+  //relay for heaters
+
+  //fans
+
+  //relay for fans
+  
 
   //set stepper motors
   motor1.setMaxSpeed(1000);
