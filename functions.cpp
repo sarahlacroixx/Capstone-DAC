@@ -197,6 +197,14 @@ void coolDown(){
     }
     turnOffFans();
 }
+
+void heatON(){
+    digitalWrite(relay, LOW);
+}
+
+void hearOFF(){
+    digitalWrite(relay, LOW);
+}
     
 
 
