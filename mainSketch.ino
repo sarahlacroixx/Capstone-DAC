@@ -88,7 +88,6 @@ void loop() {
 
   switch (startTrigger) {
     case true:
-      lcdDisplayStarting();
       startup();
       heating();
       removeCO2();
@@ -96,6 +95,8 @@ void loop() {
       //need to add a function to display the removed CO2
       startTrigger = false;
   }
+  case false:
+    lcdDisplayWaiting();
     
     startTimer = true;
     lastTrigger = millis();
