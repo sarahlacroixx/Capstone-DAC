@@ -108,9 +108,9 @@ void loop() {
     }
     //need to add a function to display that it's now removing the co2 from chamber
     openValve();
-    startCompressor():
+    startPump():
     millis(); //delay
-    stopCompressor();
+    stopPump();
     closeValve();
 
     //need to add a function to display the removed CO2
