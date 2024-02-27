@@ -90,29 +90,10 @@ void loop() {
     //move stepper motor
     lcdDisplayStarting();
   
-    //need to add in what level of CO2 is needed
-    while CO2() != 0 {
-      startFans();
-      CO2 = checkCO2();
-    }
-    
-    stepperMotorsClose();
-    currentTemp = checkTherms();
-    while currentTemp < 120 {
-      //apply heat using bang bang control
-      lcdDisplay(currentTemp, CO2);
-      currentTemp = checkTherms();
-      CO2 = checkCO2();
-      if currentTemp > 120 && currentTemp < 130 {
-        millis(); //delay for specific amount of time
-    }
-    //need to add a function to display that it's now removing the co2 from chamber
-    openValve();
-    startPump():
-    millis(); //delay
-    stopPump();
-    closeValve();
-
+    startup();
+    heating();
+    removeCO2();
+    coolDown();
     //need to add a function to display the removed CO2
     startTrigger = false;
   }
