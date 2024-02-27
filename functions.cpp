@@ -74,6 +74,7 @@ int checkCO2(){
   Serial.print("LSB: 0x");  Serial.print(data[3],HEX);
   Serial.print("  ");
   CO2ppmValue = ((data[2] * 0xFF ) + data[3]);
+    return CO2ppmValue;
 }
 
 int checkCO2inTank(){
@@ -104,7 +105,7 @@ int checkCO2inTank(){
   Serial.print("LSB: 0x");  Serial.print(data[3],HEX);
   Serial.print("  ");
   CO2ppmValue = ((data[2] * 0xFF ) + data[3]);
-    
+    return CO2ppmValue;
 }
 
 int checkTempElecBox() {
@@ -159,13 +160,17 @@ void stopPump(){
 
 void startUp(){
     lcdDisplayStarting();
-    
+    CO2 = checkCO2();
+    //checking for specific amount of CO2
     while CO2() != 0 {
-      startFans();
-      CO2 = checkCO2();
+        lcdDisplay(currentTemp, CO2);
+        startFans();
+        CO2 = checkCO2();
+        currentTemp = checkTherms();
     }
 }
 
-void 
+void heating(){
+}
 
 
