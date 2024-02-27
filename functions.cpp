@@ -142,20 +142,28 @@ int checkTherms() {
 
 }
 
-void openValve(){
+void openValve(int valve){
   digitalWrite(valve, HIGH);
 }
 
-void closeValve(){
+void closeValve(int valve){
   digitalWrite(valve, LOW);
 }
 
-void startPump(){
+void startPump(int pump){
   digitalWrite(pump, HIGH);
 }
 
-void stopPump(){
+void stopPump(int pump){
   digitalWrite(pump, LOW);
+}
+
+void heatON(int relay){
+    digitalWrite(relay, LOW);
+}
+
+void hearOFF(int relay){
+    digitalWrite(relay, LOW);
 }
 
 void startUp(){
@@ -172,19 +180,32 @@ void startUp(){
 
 void heating(){
     currentTemp = checkTherms();
-    while currentTemp < 120 {
-      //apply heat using bang bang control
+    
+    while XXX {
+        if currentTemp < 125 {
+            heatON();
+        }
+        else {
+            heatOFF();
+        }
       lcdDisplay(currentTemp, CO2);
       currentTemp = checkTherms();
-      CO2 = checkCO2();
-      if currentTemp > 120 && currentTemp < 130 {
-        millis(); //delay for specific amount of time
     }
 }
 
 void removeCO2(){
     openValve();
     startPump():
+    currentTemp = checkTherms();
+    //holding for a specific time?
+    while XXX {
+        if currentTemp < 120{
+            heatON();
+        }
+        if currentTemp > 130 {
+            heatOFF();
+        }
+    }
     millis(); //delay
     stopPump();
     closeValve();
@@ -198,13 +219,7 @@ void coolDown(){
     turnOffFans();
 }
 
-void heatON(){
-    digitalWrite(relay, LOW);
-}
 
-void hearOFF(){
-    digitalWrite(relay, LOW);
-}
     
 
 
