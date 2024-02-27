@@ -18,10 +18,13 @@ void setup() {
   pinMode(limitSwitch, OUTPUT);
 
   //relay for heaters
+  pinMode(relay1, OUTPUT);
 
   //fans
+  pinMode(fan1, OUTPUT);
+  pintMode(fan2, OUTPUT);
 
-  //relay for fans
+  //relay for valve
   
 
   //set stepper motors
