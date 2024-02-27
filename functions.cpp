@@ -28,9 +28,9 @@ void lcdDisplay(int currentTemp, int currentCO2){
   lcd.print("CO2 Level:);
 }
 
-void lcdDisplayStarting(){
+void lcdDisplayWaiting(){
   lcd.setCurser(0, 0);
-  lcd.print("Starting...");
+  lcd.print("Waiting...");
 }
 
 void startFans(){
