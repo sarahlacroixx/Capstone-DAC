@@ -157,5 +157,13 @@ void stopPump(){
   digitalWrite(pump, LOW);
 }
 
+void startUp(){
+    while CO2() != 0 {
+      startFans();
+      CO2 = checkCO2();
+    }
+}
+
+void 
 
 
