@@ -85,20 +85,18 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  while startTrigger = true {
-    //start code here
-    //move stepper motor
-    lcdDisplayStarting();
-  
-    startup();
-    heating();
-    removeCO2();
-    coolDown();
-    //need to add a function to display the removed CO2
-    startTrigger = false;
+
+  switch (startTrigger) {
+    case true:
+      lcdDisplayStarting();
+      startup();
+      heating();
+      removeCO2();
+      coolDown();
+      //need to add a function to display the removed CO2
+      startTrigger = false;
   }
     
-  
     startTimer = true;
     lastTrigger = millis();
 }
