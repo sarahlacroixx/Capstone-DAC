@@ -6,7 +6,7 @@ AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
 AccelStepper motor1(motorInterfaceType, STEP2, DIR2);
 
 LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows); //0x27 is address for lcd
-
+#include "headers.h"
 #include "functions.h"
 
 
