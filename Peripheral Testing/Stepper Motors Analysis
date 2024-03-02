@@ -1,0 +1,32 @@
+#include <AccelStepper.h>
+#include <Wire.h>
+
+//stepper motor pins
+const int DIR1 = 0;
+const int STEP1 = 0;
+const int DIR2 = 0;
+const int STEP2 = 0;
+
+
+void setup(){
+  motor1.setMaxSpeed(1000);
+  motor1.setAcceleration(60);
+  motor1.setSpeed(200);
+  motor1.moveTo(80); //adjust this to move correct position
+  motor2.setMaxSpeed(1000);
+  motor2.setAcceleration(60);
+  motor2.setSpeed(200);
+  motor2.moveTo(80); //adjust this to move correct position
+}
+
+void loop(){
+  stepperMotorsClose();
+}
+
+void stepperMotorsClose(){
+  if (motor1.distanceToGo() == 0 && motor2.distanceToGo() == 0) {
+      motor1.moveTo(-motor1.currentPosition());
+      motor2.moveTo(-motor2.currentPosition());
+    }
+    motor.run();
+}
