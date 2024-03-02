@@ -8,8 +8,8 @@ double CO2ppmValue;
 void stepperMotorsClose(){
     //change pin number depending on limit switch pin
     while digitalRead(7) == LOW {
-        motor1.runSpeed();
-        motor2.runSpeed();
+        motor1.run();
+        motor2.run();
     }
     
 }
