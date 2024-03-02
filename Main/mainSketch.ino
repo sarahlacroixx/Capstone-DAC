@@ -1,6 +1,7 @@
-#include <AccelStepper.h>
 #include <Wire.h>
-#include <LiquidCrystal_I2C.h>
+#include <LiquidCrystal_I2C.h> //library for LCD
+#include <ADS1X15.h> //library for ADC
+#include <AccelStepper.h> //library for stepper motors
 
 AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
 AccelStepper motor1(motorInterfaceType, STEP2, DIR2);
@@ -67,6 +68,9 @@ void setup() {
   //set Extended Mode.
   //0:12-bit Temperature(-55C to +128C) 1:13-bit Temperature(-55C to +150C)
   sensor0.setExtendedMode(1);
+
+  //adc setup
+  ADS.begin();
 
 }
 
