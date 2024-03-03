@@ -86,41 +86,15 @@ void turnOffFans(){
   digitalWrite(fan2, LOW);
 }
 
-double checkCO2(){
-}
-
-double checkCO2inTank(){
-    //this code needs to be changed to address the CO2 sensor in the tank rather than the one inside the chamber
-    // start I2C
-
-  Wire.beginTransmission(ADDR_6713);
-  Wire.write(0x04);
-  Wire.write(0x13);
-  Wire.write(0x8B);
-  Wire.write(0x00);
-  Wire.write(0x01);
-  // end transmission
-  Wire.endTransmission();
-  // read report of current gas measurement in ppm
-  delay(2000);
-  Wire.requestFrom(ADDR_6713, 4); //request 4 bytes from slave device
-
-  data[0] = Wire.read();
-  data[1] = Wire.read();
-  data[2] = Wire.read();
-  data[3] = Wire.read();
-
-  Serial.print("Func code: "); Serial.print(data[0],HEX);
-  Serial.print(" byte count: "); Serial.println(data[1],HEX);
-  Serial.print("MSB: 0x");  Serial.print(data[2],HEX);
-  Serial.print("  ");
-  Serial.print("LSB: 0x");  Serial.print(data[3],HEX);
-  Serial.print("  ");
-  CO2ppmValue = ((data[2] * 0xFF ) + data[3]);
+double checkCO2(SparkFun_ENS160 sensor){
+    double CO2ppmValue = 0;
+    if(myENS.chechDataStatus()) {
+        CO2ppmValue = sensor.getECO2();
+    }
     return CO2ppmValue;
 }
 
-double checkTempElecBox() {
+double checkTempElecBox(TMP102 sensor0) {
   float temperature;
 
   // Turn sensor on to start temperature measurement.
@@ -161,7 +135,7 @@ void hearOFF(int relay){
     digitalWrite(relay, LOW);
 }
 
-void startUp(){
+void adsorbtion(){
     currentCO2 = checkCO2();
     startFans();
     //checking for specific amount of CO2 (when it stops increasing?) ->need to do math on this
@@ -184,7 +158,7 @@ void heating(){
     }
 }
 
-void removeCO2(){
+void desorption(){
     openValve();
     startPump():
     currentTemp = checkTherms();
@@ -197,7 +171,6 @@ void removeCO2(){
             heatOFF();
         }
     }
-    millis(); //delay
     stopPump();
     closeValve();
 }
