@@ -13,21 +13,11 @@ void checkCO2(){
   delay(2000);
   Wire.requestFrom(ADDR_6713, 4); //request 4 bytes from slave device
 
-  data[0] = Wire.read();
-  data[1] = Wire.read();
-  data[2] = Wire.read();
-  data[3] = Wire.read();
+  co2[0] = Wire.read();
+  co2[1] = Wire.read();
+  co2[2] = Wire.read();
+  co2[3] = Wire.read();
 
-  Serial.print("Func code: ");
-  Serial.print(data[0],HEX);
-  Serial.print(" byte count: ");
-  Serial.println(data[1],HEX);
-  Serial.print("MSB: 0x"); 
-  Serial.print(data[2],HEX);
-  Serial.print("  ");
-  Serial.print("LSB: 0x");
-  Serial.print(data[3],HEX);
-  Serial.print("  ");
-  CO2ppmValue = ((data[2] * 0xFF ) + data[3]);
-    return CO2ppmValue;
+  CO2ppmValue = ((co2[2] * 0xFF ) + data[3]);
+  return CO2ppmValue;
 }
