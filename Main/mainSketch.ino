@@ -42,7 +42,7 @@ void IRAM_ATTR detectStart(){
 
 }
 
-void IRAM_ATTR onTimer(){
+void IRAM_ATTR checkTimer(){
   timerFlag = true;
 }
 
