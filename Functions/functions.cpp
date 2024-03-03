@@ -47,6 +47,18 @@ void lcdDisplayWaiting(){
   lcd.print("Waiting...");
 }
 
+void lcdDisplayCooldown(int currentTemp, int currentCO2){
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Cooldown");
+  lcd.setCursor(0, 1);
+  lcd.print("Temperature: ");
+  lcd.setCursor(14, 1);
+  lcd.print(currentTemp);
+  lcd.setCursor(0, 1);
+  lcd.print("CO2 Level:);
+}
+
 void startFans(){
   digitalWrite(fan1, HIGH);
   digitalWrite(fan2, HIGH);
