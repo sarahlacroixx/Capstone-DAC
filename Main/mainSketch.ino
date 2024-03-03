@@ -10,6 +10,8 @@ LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows); //0x27 is address for lcd
 #include "headers.h"
 #include "functions.h"
 
+timer *My_timer = NULL;
+
 //see setup file
 
 void loop() {
