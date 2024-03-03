@@ -163,7 +163,7 @@ void desorption(){
     startPump():
     currentTemp = checkTherms();
     //holding for a specific time?
-    while timerFlag = 0 {
+    while timerFlag = false {
         if currentTemp < 120{
             heatON();
         }
