@@ -21,3 +21,5 @@ void checkCO2(){
   CO2ppmValue = ((co2[2] * 0xFF ) + data[3]);
   return CO2ppmValue;
 }
+
+
