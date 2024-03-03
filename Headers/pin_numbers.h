@@ -34,7 +34,7 @@
 
 //relay solenoid pins
 
-//this is CO2 or temp cannot remember
+//electronics box temp
 #define ADDR_6713  0x15
 
 
