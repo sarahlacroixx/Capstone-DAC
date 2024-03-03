@@ -138,13 +138,17 @@ void hearOFF(int relay){
 void adsorbtion(){
     currentCO2 = checkCO2();
     startFans();
-    //checking for specific amount of CO2 (when it stops increasing?) ->need to do math on this
-    while currentCO2 > prevCO2+1 {
+    //wait for 150 minutes to go by
+    while timerFlag = false {
         lcdDisplay(currentTemp, currentCO2);
         prevCO2 = currentCO2;
         currentCO2 = checkCO2();
         currentTemp = checkTherms();
     }
+    
+}
+float checkTherms(){
+    thermistor(
 }
 
 void heating(){
