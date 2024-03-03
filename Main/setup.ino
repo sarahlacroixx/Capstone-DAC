@@ -58,5 +58,11 @@ void setup() {
 
   //adc setup
   ADS.begin();
+  //set up timer
+  co2Timer = timerBegin(0, 80, true);
+  timerAttachInterrupt(co2Timer, &co2Timer, true);
+  //pass through 9000000000 milliseconds to wait for 150 minutes to see an inturrupt
+  timerAlarmWrite(co2Timer, 9000000000, true);
+  timerAlarmEnable(co2Timer);
 
 }
