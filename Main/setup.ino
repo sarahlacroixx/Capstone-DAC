@@ -13,6 +13,7 @@ void setup() {
   pintMode(fan2, OUTPUT);
 
   //relay for valve
+  pinMode(valveRelay, INPUT);
   
 
   //set stepper motors
