@@ -18,11 +18,24 @@ void stepperMotorsOpen(){
     //add code here to open stepper motor
 }
 
-void lcdDisplay(int currentTemp, int currentCO2){
+void lcdDisplayAdsorption(int currentTemp, int currentCO2){
   lcd.clear();
   lcd.setCursor(0, 0);
+  lcd.print("Adsorption Stage");
+  lcd.setCursor(0, 1);
   lcd.print("Temperature: ");
-  lcd.setCursor(14, 0);
+  lcd.setCursor(14, 1);
+  lcd.print(currentTemp);
+  lcd.setCursor(0, 1);
+  lcd.print("CO2 Level:);
+}
+void lcdDisplayDesorption(int currentTemp, int currentCO2){
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Desorption Stage");
+  lcd.setCursor(0, 1);
+  lcd.print("Temperature: ");
+  lcd.setCursor(14, 1);
   lcd.print(currentTemp);
   lcd.setCursor(0, 1);
   lcd.print("CO2 Level:);
