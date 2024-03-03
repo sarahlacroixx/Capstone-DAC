@@ -10,8 +10,9 @@ LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows); //0x27 is address for lcd
 #include "headers.h"
 #include "functions.h"
 
-timer *My_timer = NULL;
+hw_timer_t *Co2timer = NULL;
 
+bool timerFlag = false;
 //see setup file
 
 void loop() {
@@ -41,6 +42,7 @@ void IRAM_ATTR detectStart(){
 
 }
 
-void IRAM_ATTR detectStop(){
+void IRAM_ATTR onTimer(){
+  timerFlag = true;
 }
 
