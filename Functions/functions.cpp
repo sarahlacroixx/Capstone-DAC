@@ -28,6 +28,8 @@ void lcdDisplayAdsorption(int currentTemp, int currentCO2){
   lcd.print(currentTemp);
   lcd.setCursor(0, 1);
   lcd.print("CO2 Level:);
+  lcd.setCursor(12, 1);
+  lcd.print(currentCO2);
 }
 void lcdDisplayDesorption(int currentTemp, int currentCO2){
   lcd.clear();
@@ -39,6 +41,8 @@ void lcdDisplayDesorption(int currentTemp, int currentCO2){
   lcd.print(currentTemp);
   lcd.setCursor(0, 1);
   lcd.print("CO2 Level:);
+  lcd.setCursor(12, 1);
+  lcd.print(currentCO2);
 }
 
 void lcdDisplayWaiting(){
@@ -57,6 +61,19 @@ void lcdDisplayCooldown(int currentTemp, int currentCO2){
   lcd.print(currentTemp);
   lcd.setCursor(0, 1);
   lcd.print("CO2 Level:);
+  lcd.setCursor(12, 1);
+  lcd.print(currentCO2);
+}
+void lcdDisplayCapCO2(int finalCO2){
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Process");
+  lcd.setCursor(0, 1);
+  lcd.print("Completed");
+  lcd.setCursor(0, 1);
+  lcd.print("CO2 Captured:);
+  lcd.setCursor(14, 1);
+  lcd.print(currentCO2);
 }
 
 void startFans(){
