@@ -5,7 +5,7 @@
 int data [4];
 double CO2ppmValue;
 
-void stepperMotorsClose(){
+void stepperMotorsClose(AccelStepper motor1, AccelStepper motor2){
     //change pin number depending on limit switch pin
     while digitalRead(7) == LOW {
         motor1.run();
@@ -14,7 +14,7 @@ void stepperMotorsClose(){
     
 }
 
-void stepperMotorsOpen(){
+void stepperMotorsOpen(AccelStepper motor1, AccelStepper motor2){
     //add code here to open stepper motor
 }
 
