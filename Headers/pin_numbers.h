@@ -27,15 +27,12 @@
 //relay heat pins
 
 //fan pins
-
-//thermisters
+#DEFINE fan1 10
+#DEFINE fan2 11
 
 //pump
 
 //relay solenoid pins
-
-//electronics box temp
-#define ADDR_6713  0x15
 
 
 
