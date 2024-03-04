@@ -7,7 +7,7 @@
 
 //set up motors
 AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
-AccelStepper motor1(motorInterfaceType, STEP2, DIR2);
+AccelStepper motor2(motorInterfaceType, STEP2, DIR2);
 
 //set up co2 sensor
 SparkFun_ENS160 co2Sensor1;
@@ -35,9 +35,9 @@ void loop() {
 
   switch (startTrigger) {
     case true:
-      adsorption(ADS, co2Sensor1);
+      adsorption(motor1, motor2, fan1, fan2, ADS, co2Sensor1);
       desorption(ADS, co2sensor2);
-      coolDown(ADS, co2sensor2);
+      coolDown(motor1, motor2, fan1, fan2, ADS, co2sensor2);
       startTrigger = false;
   }
   case false:
