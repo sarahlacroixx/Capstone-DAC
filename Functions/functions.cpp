@@ -77,12 +77,12 @@ void lcdDisplayCapCO2(int finalCO2){
   lcd.print(currentCO2);
 }
 
-void startFans(){
+void startFans(fan1, fan2){
   digitalWrite(fan1, HIGH);
   digitalWrite(fan2, HIGH);
   
 }
-void turnOffFans(){
+void turnOffFans(fan1 fan2){
   digitalWrite(fan1, LOW);
   digitalWrite(fan2, LOW);
 }
@@ -136,9 +136,9 @@ void hearOFF(int relay){
     digitalWrite(relay, LOW);
 }
 
-void adsorption(ADS1115 ADS, SparkFun_ENS160 co2Sensor1){
+void adsorption(AccelStepper motor1, AccelStepper motor2, int fan1, int fan2, ADS1115 ADS, SparkFun_ENS160 co2Sensor1){
     currentCO2 = checkCO2();
-    startFans();
+    startFans(fan1, fan2);
     //wait for 150 minutes to go by
     while timerFlag = false {
         lcdDisplay(currentTemp, currentCO2);
@@ -148,6 +148,9 @@ void adsorption(ADS1115 ADS, SparkFun_ENS160 co2Sensor1){
     }
     //set timer back to false for next cycle
     timerFlag = false;
+    turnOffFans(fan1, fan2);
+    void stepperMotorsClose(motor1, motor2);
+    
 }
 //function to check all of the thermistors from each adc channel and return the average value
 float checkTherms(ADS1115 ADS){
@@ -169,10 +172,10 @@ void heating(ADS1115 ADS, SparkFun_ENS160 co2Sensor2){
     }
 }
 
-void desorption(ADS1115 ADS, SparkFun_ENS160 co2sensor2){
+void desorption(int valve, int pump, ADS1115 ADS, SparkFun_ENS160 co2sensor2){
     heating(co2Sensor2);
-    openValve();
-    startPump():
+    openValve(valve);
+    startPump(pump):
     currentTemp = checkTherms(ADS);
     outputtedCO2 = checkCO2(co2sensor2);
     
@@ -189,19 +192,19 @@ void desorption(ADS1115 ADS, SparkFun_ENS160 co2sensor2){
         currentTemp = checkTherms(ADS);
         lcdDisplayDesorption(currentTemp, outputtedCO2);
     }
-    stopPump();
-    closeValve();
+    stopPump(pump);
+    closeValve(valve);
 }
 
-void coolDown(ADS1115 ADS, SparkFun_ENS160 co2sensor2){
-    openStepperMotors();
+void coolDown(AccelStepper motor1, AccelStepper motor2, int fan1, int fan2, ADS1115 ADS, SparkFun_ENS160 co2sensor2){
+    openStepperMotors(motor1, motor2);
     currentTemp = checkTherms(ADS);
     finalCO2 = checkCO2(co2sensor2);
     while currentTemp > 30{
-        startFans();
+        startFans(fan1, fan2);
         lcdDisplayCooldown(finalCO2);
     }
-    turnOffFans();
+    turnOffFans(fan1, fan2);
     lcdDisplayCapCO2(finalCO2);
     delay(200);
 }
