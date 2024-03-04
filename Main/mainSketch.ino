@@ -32,22 +32,16 @@ bool timerFlag = false;
 //see setup file
 
 void loop() {
-  // put your main code here, to run repeatedly:
 
   switch (startTrigger) {
     case true:
-      startup();
-      heating();
-      removeCO2();
-      coolDown();
-      //need to add a function to display the removed CO2
+      adsorption(ADS, co2Sensor1);
+      desorption(ADS, co2sensor2);
+      coolDown(ADS, co2sensor2);
       startTrigger = false;
   }
   case false:
     lcdDisplayWaiting();
-    
-    startTimer = true;
-    lastTrigger = millis();
 }
   
 
