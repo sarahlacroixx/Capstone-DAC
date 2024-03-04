@@ -64,6 +64,7 @@ void lcdDisplayCooldown(int currentTemp, int currentCO2){
   lcd.setCursor(12, 1);
   lcd.print(currentCO2);
 }
+
 void lcdDisplayCapCO2(int finalCO2){
   lcd.clear();
   lcd.setCursor(0, 0);
@@ -201,7 +202,10 @@ void coolDown(ADS1115 ADS, SparkFun_ENS160 co2sensor2){
         lcdDisplayCooldown(finalCO2);
     }
     turnOffFans();
+    lcdDisplayCapCO2(finalCO2);
+    delay(200);
 }
+
 
 
 
