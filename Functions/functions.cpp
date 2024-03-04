@@ -46,7 +46,7 @@ void lcdDisplayDesorption(int currentTemp, int currentCO2){
 }
 
 void lcdDisplayWaiting(){
-    lcd.clear();
+  lcd.clear();
   lcd.setCurser(0, 0);
   lcd.print("Waiting...");
 }
@@ -135,7 +135,7 @@ void hearOFF(int relay){
     digitalWrite(relay, LOW);
 }
 
-void adsorption(SparkFun_ENS160 co2Sensor1){
+void adsorption(ADS1115 ADS, SparkFun_ENS160 co2Sensor1){
     currentCO2 = checkCO2();
     startFans();
     //wait for 150 minutes to go by
@@ -149,7 +149,7 @@ void adsorption(SparkFun_ENS160 co2Sensor1){
     timerFlag = false;
 }
 //function to check all of the thermistors from each adc channel and return the average value
-float checkTherms(){
+float checkTherms(ADS1115 ADS){
     float sum = 0;
     for (int i = 0; i<=3; i++){
         sum = sum + thermistor(ADS, 1;);
@@ -157,22 +157,22 @@ float checkTherms(){
     return sum/4;
 }
 
-void heating(SparkFun_ENS160 co2Sensor2){
-    currentTemp = checkTherms();
+void heating(ADS1115 ADS, SparkFun_ENS160 co2Sensor2){
+    currentTemp = checkTherms(ADS);
     CO2 = checkCO2(co2Sensor2);
     while currentTemp < 125 {
         heatON();
         lcdDisplayDesorption(currentTemp, CO2);
-        currentTemp = checkTherms();
+        currentTemp = checkTherms(ADS);
         CO2 = checkCO2(co2Sensor1);
     }
 }
 
-void desorption(SparkFun_ENS160 co2sensor2){
-    heating(co2Sensor2)'
+void desorption(ADS1115 ADS, SparkFun_ENS160 co2sensor2){
+    heating(co2Sensor2);
     openValve();
     startPump():
-    currentTemp = checkTherms();
+    currentTemp = checkTherms(ADS);
     outputtedCO2 = checkCO2(co2sensor2);
     
     //hold until CO2 in the tank has stopped increasing
@@ -185,16 +185,16 @@ void desorption(SparkFun_ENS160 co2sensor2){
         }
         prevCO2 = outputtedCO2;
         outputtedCO2 = checkCO2(co2sensor2);
-        currentTemp = checkTherms();
+        currentTemp = checkTherms(ADS);
         lcdDisplayDesorption(currentTemp, outputtedCO2);
     }
     stopPump();
     closeValve();
 }
 
-void coolDown(){
+void coolDown(ADS1115 ADS, SparkFun_ENS160 co2sensor2){
     openStepperMotors();
-    currentTemp = checkTherms();
+    currentTemp = checkTherms(ADS);
     finalCO2 = checkCO2(co2sensor2);
     while currentTemp > 30{
         startFans();
