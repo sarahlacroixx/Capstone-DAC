@@ -135,17 +135,18 @@ void hearOFF(int relay){
     digitalWrite(relay, LOW);
 }
 
-void adsorbtion(){
+void adsorbtion(SparkFun_ENS160 co2Sensor1){
     currentCO2 = checkCO2();
     startFans();
     //wait for 150 minutes to go by
     while timerFlag = false {
         lcdDisplay(currentTemp, currentCO2);
         prevCO2 = currentCO2;
-        currentCO2 = checkCO2();
+        currentCO2 = checkCO2(co2Sensor1);
         currentTemp = checkTherms();
     }
-    
+    //set timer back to false for next cycle
+    timerFlag = false;
 }
 //function to check all of the thermistors from each adc channel and return the average value
 float checkTherms(){
@@ -156,28 +157,36 @@ float checkTherms(){
     return sum/4;
 }
 
-void heating(){
+void heating(SparkFun_ENS160 co2Sensor2){
     currentTemp = checkTherms();
+    CO2 = checkCO2(co2Sensor2);
     while currentTemp < 125 {
         heatON();
-        lcdDisplay(currentTemp, CO2);
+        lcdDisplayDesorption(currentTemp, CO2);
         currentTemp = checkTherms();
-        CO2 = checkCO2();
+        CO2 = checkCO2(co2Sensor1);
     }
 }
 
-void desorption(){
+void desorption(SparkFun_ENS160 co2sensor2){
+    heating(co2Sensor2)'
     openValve();
     startPump():
     currentTemp = checkTherms();
-    //holding for a specific time?
-    while timerFlag = false {
+    outputtedCO2 = checkCO2(co2sensor2);
+    
+    //hold until CO2 in the tank has stopped increasing
+    while outputtedCO2 > prevCO2  {
         if currentTemp < 120{
             heatON();
         }
         if currentTemp > 130 {
             heatOFF();
         }
+        prevCO2 = outputtedCO2;
+        outputtedCO2 = checkCO2(co2sensor2);
+        currentTemp = checkTherms();
+        lcdDisplayDesorption(currentTemp, outputtedCO2);
     }
     stopPump();
     closeValve();
@@ -186,8 +195,10 @@ void desorption(){
 void coolDown(){
     openStepperMotors();
     currentTemp = checkTherms();
+    finalCO2 = checkCO2(co2sensor2);
     while currentTemp > 30{
         startFans();
+        lcdDisplayCooldown(finalCO2);
     }
     turnOffFans();
 }
