@@ -10,7 +10,8 @@ AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
 AccelStepper motor1(motorInterfaceType, STEP2, DIR2);
 
 //set up co2 sensor
-SparkFun_ENS160 co2Sensor;
+SparkFun_ENS160 co2Sensor1;
+SparkFun_ENS160 co2Sensor2;
 
 //set up electric box sensor
 TMP102 elecSensor;
