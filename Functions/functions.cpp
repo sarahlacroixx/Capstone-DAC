@@ -135,7 +135,7 @@ void hearOFF(int relay){
     digitalWrite(relay, LOW);
 }
 
-void adsorbtion(SparkFun_ENS160 co2Sensor1){
+void adsorption(SparkFun_ENS160 co2Sensor1){
     currentCO2 = checkCO2();
     startFans();
     //wait for 150 minutes to go by
