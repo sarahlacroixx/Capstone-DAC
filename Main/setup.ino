@@ -1,4 +1,9 @@
 void setup() {
+  Serial.begin(115200);
+
+  //set up I2C devices
+  Wire.begin(6,7);
+  
   //start with all pins
   //buttons and switches
   pinMode(startButton, INPUT);
@@ -22,8 +27,6 @@ void setup() {
   motor2.setMaxSpeed(1000);
   motor2.setSpeed(200);
 
-  //set up I2C devices (needs to set up lcd, CO2, and temp sensor for inside elec box
-  Wire.begin(6,7); //change to pins of lcd screen
 
   //set lcd screen
   lcd.init()
@@ -33,11 +36,8 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(startButton), detectStart, RISING);
   attachInterrupt(digitalPinToInterrupt(stopButton), detectStop, RISING);
 
-  // temperature sensor things
-  Serial.begin(115200);
-  Wire.begin(6,7); //Join I2C Bus (NEED TO CHANGE THIS TO NOT INTERFERE WITH LCD)
-
-  if(!sensor0.begin())
+  //set up electrical box sensor
+  if(!elecSensor.begin())
   {
     Serial.println("Cannot connect to TMP102.");
     Serial.println("Is the board connected? Is the device ID correct?");
@@ -47,18 +47,19 @@ void setup() {
   Serial.println("Connected to TMP102!");
   delay(100);
 
-  sensor0.setAlertMode(0); // Comparator Mode.
+  elecSensor.setAlertMode(0); // Comparator Mode.
 
   // set the Conversion Rate (how quickly the sensor gets a new reading)
   //0-3: 0:0.25Hz, 1:1Hz, 2:4Hz, 3:8Hz
-  sensor0.setConversionRate(2);
+  elecSensor.setConversionRate(2);
 
   //set Extended Mode.
   //0:12-bit Temperature(-55C to +128C) 1:13-bit Temperature(-55C to +150C)
-  sensor0.setExtendedMode(1);
+  elecSensor.setExtendedMode(1);
 
   //adc setup
   ADS.begin();
+  
   //set up timer
   co2Timer = timerBegin(0, 80, true);
   timerAttachInterrupt(co2Timer, &checkTimer, true);
