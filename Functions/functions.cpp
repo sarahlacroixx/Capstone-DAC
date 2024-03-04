@@ -147,13 +147,17 @@ void adsorbtion(){
     }
     
 }
+//function to check all of the thermistors from each adc channel and return the average value
 float checkTherms(){
-    thermistor(
+    float sum = 0;
+    for (int i = 0; i<=3; i++){
+        sum = sum + thermistor(ADS, 1;);
+    }
+    return sum/4;
 }
 
 void heating(){
     currentTemp = checkTherms();
-    
     while currentTemp < 125 {
         heatON();
         lcdDisplay(currentTemp, CO2);
