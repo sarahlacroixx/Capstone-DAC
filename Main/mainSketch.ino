@@ -36,12 +36,14 @@ void loop() {
   switch (startTrigger) {
     case true:
       adsorption(motor1, motor2, fan1, fan2, ADS, co2Sensor1);
-      desorption(ADS, co2sensor2);
-      coolDown(motor1, motor2, fan1, fan2, ADS, co2sensor2);
+      desorption(1, 1, ADS, co2Sensor2);
+      coolDown(motor1, motor2, fan1, fan2, ADS, co2Sensor2);
       startTrigger = false;
-  }
-  case false:
-    lcdDisplayWaiting();
+      break;
+    case false:
+      lcdDisplayWaiting();
+      break;
+  }    
 }
   
 
