@@ -11,14 +11,14 @@ void setup() {
   pinMode(limitSwitch, OUTPUT);
 
   //relay for heaters
-  pinMode(relay1, OUTPUT);
+  //pinMode(relay1, OUTPUT);
 
   //fans
-  pinMode(fan1, OUTPUT);
-  pintMode(fan2, OUTPUT);
+  //pinMode(fan1, OUTPUT);
+  //pintMode(fan2, OUTPUT);
 
   //relay for valve
-  pinMode(valveRelay, INPUT);
+  //pinMode(valveRelay, INPUT);
   
 
   //set stepper motors
@@ -29,12 +29,12 @@ void setup() {
 
 
   //set lcd screen
-  lcd.init()
+  lcd.init();
   lcd.backlight();
 
   // set interrupts
-  attachInterrupt(digitalPinToInterrupt(startButton), detectStart, RISING);
-  attachInterrupt(digitalPinToInterrupt(stopButton), detectStop, RISING);
+  attachInterrupt(digitalPinToInterrupt(0), detectStart, RISING);
+  //attachInterrupt(digitalPinToInterrupt(stopButton), detectStop, RISING);
 
   //set up electrical box sensor
   if(!elecSensor.begin())
@@ -61,10 +61,10 @@ void setup() {
   ADS.begin();
   
   //set up timer
-  co2Timer = timerBegin(0, 80, true);
-  timerAttachInterrupt(co2Timer, &checkTimer, true);
+  co2timer = timerBegin(60);
+  timerAttachInterrupt(co2timer, &checkTimer);
   //pass through 9000000000 milliseconds to wait for 150 minutes to see an inturrupt
-  timerAlarmWrite(co2Timer, 9000000000, true);
-  timerAlarmEnable(co2Timer);
+  timerAlarm(co2timer, 9000000000, true, 0);
+  //timerAlarmEnable(co2timer);
 
 }
