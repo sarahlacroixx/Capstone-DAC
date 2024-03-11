@@ -250,6 +250,54 @@ void coolDown(AccelStepper motor1, AccelStepper motor2, int fan1, int fan2, ADS1
     delay(200);
 }
 
+void displayClock(unsigned long StartTime){
+  lcd.setCursor(0,3);
+  unsigned long CurrentTime = millis();
+  unsigned long ElapsedTime = CurrentTime - StartTime;
+  int hour = 0;
+  int min = 0;
+  int sec = ElapsedTime/1000;
+  min = sec/60;
+  sec = sec%60;
+  if (min >= 60) {
+    hour = min/60;
+    min = min%60;
+  }
+  lcd.print("Elap. Time: ");
+  lcd.setCursor(12,3);
+  if (hour < 10){
+    lcd.print("0");
+    lcd.setCursor(13,3);
+    lcd.print(hour);
+  } else {
+    lcd.print(hour);
+  }
+  
+  lcd.setCursor(14,3);
+  lcd.print(":");
+  lcd.setCursor(15, 3);
+
+  if (min < 10){
+    lcd.print("0");
+    lcd.setCursor(16,3);
+    lcd.print(min);
+  } else {
+    lcd.print(min);
+  }
+  lcd.setCursor(17,3);
+  lcd.print(":");
+  lcd.setCursor(18, 3);
+
+  if (sec < 10){
+    lcd.print("0");
+    lcd.setCursor(19,3);
+    lcd.print(sec);
+  } else {
+    lcd.print(sec);
+  }
+  
+}
+
 
 
 
