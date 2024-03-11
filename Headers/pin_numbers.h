@@ -10,8 +10,8 @@
 #DEFINE limitSwitch 0
 
 //lcd display
-#DEFINE ledColumns 16
-#DEFINE ledRows 2
+#DEFINE ledColumns 20
+#DEFINE ledRows 4
 
 //stepper motor pins
 #DEFINE DIR1  28
