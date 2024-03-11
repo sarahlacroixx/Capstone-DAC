@@ -18,8 +18,7 @@ void stepperMotorsOpen(AccelStepper motor1, AccelStepper motor2){
     //add code here to open stepper motor
 }
 
-void lcdDisplayAdsorption(int currentTemp, int currentCO2){
-  lcd.clear();
+
   lcd.setCursor(0, 0);
   lcd.print("Adsorption Stage");
   lcd.setCursor(0, 1);
