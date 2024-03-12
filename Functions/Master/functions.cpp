@@ -5,6 +5,26 @@
 int data [4];
 double CO2ppmValue;
 
+uint8_t slaveAddress[] = {0x24, 0x6F, 0x28, 0x7A, 0xAE, 0x7C}; //NEED TO UPDATE
+
+typedef struct parameters {
+    bool heat;
+    bool fans;
+    bool pump;
+    bool vavle;
+
+} parameter;
+
+parameter highVolt;
+
+esp_now_peer_info_t otherInfo;
+
+//FUNCTION FROM LIBRARY
+void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
+  Serial.print("\r\nLast Packet Send Status:\t");
+  Serial.println(status == ESP_NOW_SEND_SUCCESS ? "Delivery Success" : "Delivery Fail");
+}
+
 void stepperMotorsClose(AccelStepper motor1, AccelStepper motor2){
     //change pin number depending on limit switch pin
     while (digitalRead(7) == LOW) {
