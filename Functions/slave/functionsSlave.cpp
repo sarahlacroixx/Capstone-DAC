@@ -150,3 +150,16 @@ void heatON(int relay){
 void hearOFF(int relay){
     digitalWrite(relay, LOW);
 }
+
+void stepperMotorsClose(AccelStepper motor1, AccelStepper motor2){
+    //change pin number depending on limit switch pin
+    while (digitalRead(7) == LOW) {
+        motor1.run();
+        motor2.run();
+    }
+    
+}
+
+void stepperMotorsOpen(AccelStepper motor1, AccelStepper motor2){
+    //add code here to open stepper motor
+}
