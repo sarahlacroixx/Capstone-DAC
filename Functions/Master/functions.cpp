@@ -136,7 +136,8 @@ void adsorption(AccelStepper motor1, AccelStepper motor2, int fan1, int fan2, AD
     double currentCO2 = checkCO2(co2Sensor1);
     float currentTemp = checkTherms(ADS);
     double prevCO2 = 0;
-    //startFans(fan1, fan2);
+    //start fans
+    sendData(false, true, false, false);
     //wait for 150 minutes to go by
     while (timerFlag = false) {
         lcdDisplayAdsorption(currentTemp, currentCO2);
@@ -146,7 +147,9 @@ void adsorption(AccelStepper motor1, AccelStepper motor2, int fan1, int fan2, AD
     }
     //set timer back to false for next cycle
     timerFlag = false;
-    //turnOffFans(fan1, fan2);
+    //turn off fans
+    sendData(false, true, false, false);
+    //FIX CODE HERE TO CLOSE STEPPER MOTORS
     stepperMotorsClose(motor1, motor2);
     
 }
