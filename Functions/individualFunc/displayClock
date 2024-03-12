@@ -1,4 +1,4 @@
-void displayClock(unsigned long StartTime){
+void displayClock(unsigned long StartTime, int spot){
   lcd.setCursor(0,3);
   unsigned long CurrentTime = millis();
   unsigned long ElapsedTime = CurrentTime - StartTime;
@@ -12,33 +12,33 @@ void displayClock(unsigned long StartTime){
     min = min%60;
   }
   lcd.print("Elap. Time: ");
-  lcd.setCursor(12,3);
+  lcd.setCursor(12,spot);
   if (hour < 10){
     lcd.print("0");
-    lcd.setCursor(13,3);
+    lcd.setCursor(13,spot);
     lcd.print(hour);
   } else {
     lcd.print(hour);
   }
   
-  lcd.setCursor(14,3);
+  lcd.setCursor(14,spot);
   lcd.print(":");
-  lcd.setCursor(15, 3);
+  lcd.setCursor(15, spot);
 
   if (min < 10){
     lcd.print("0");
-    lcd.setCursor(16,3);
+    lcd.setCursor(16,spot);
     lcd.print(min);
   } else {
     lcd.print(min);
   }
-  lcd.setCursor(17,3);
+  lcd.setCursor(17,spot);
   lcd.print(":");
-  lcd.setCursor(18, 3);
+  lcd.setCursor(18, spot);
 
   if (sec < 10){
     lcd.print("0");
-    lcd.setCursor(19,3);
+    lcd.setCursor(19,spot);
     lcd.print(sec);
   } else {
     lcd.print(sec);
