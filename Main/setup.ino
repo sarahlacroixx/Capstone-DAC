@@ -90,4 +90,12 @@ void setup() {
   timerAlarm(co2timer, 9000000000, true, 0);
   //timerAlarmEnable(co2timer);
 
+
+  //set up i/o expander board
+  Wire.begin(6,7); // wake up I2C bus
+  Wire.beginTransmission(0x20);
+  Wire.write(0x01); // IODIRA register
+  Wire.write(0xFF); //set bank to inputs
+  Wire.endTransmission();
+
 }
