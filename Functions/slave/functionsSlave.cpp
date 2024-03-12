@@ -1,8 +1,40 @@
-//need to load libraries
+/*
+This code is for the "slave" esp32. This code controls the
+- heaters
+- fans
+- stepper motors
+- valve
+- pump
+*/
 
+//load libraries
+#include <Wire.h>
+#include <AccelStepper.h> //library for stepper motors
 #include <esp_now.h>
 #include <WiFi.h>
-//need to create a loop where it just checks the data received
+
+//stepper motor pins
+#DEFINE DIR1  28
+#DEFINE STEP1  27
+#DEFINE DIR2  26
+#DEFINE STEP2  25
+#DEFINE DIR3  24
+#DEFINE STEP3  23
+#DEFINE DIR4  20
+#DEFINE STEP4  19
+#DEFINE motorInterfacetype 1
+
+//relay heat pins
+
+//fan pins
+#DEFINE fan1 10
+#DEFINE fan2 11
+
+//pump
+
+//relay solenoid pins
+
+
 //include functions from espNOW
 typedef struct parameters {
     bool heat;
