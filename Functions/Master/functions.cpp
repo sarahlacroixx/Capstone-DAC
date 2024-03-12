@@ -15,7 +15,7 @@ typedef struct parameters {
 
 } parameters;
 
-parameter highVolt;
+parameters highVolt;
 
 esp_now_peer_info_t otherInfo;
 
