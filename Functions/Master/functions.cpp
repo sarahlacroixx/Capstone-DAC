@@ -107,12 +107,13 @@ void lcdDisplayCapCO2(int finalCO2){
 
 
 double checkCO2(SparkFun_ENS160 sensor){
-    double CO2ppmValue = 0;
+    const int CO2Value;
+
     if(sensor.checkDataStatus()) {
-        CO2ppmValue = sensor.getECO2();
+        CO2Value = sensor.getECO2();
     }
-    return CO2ppmValue;
-}
+ }
+
 
 float checkTempElecBox(TMP102 sensor0) {
   float temperature;
@@ -310,8 +311,6 @@ void readLS(int num){
     byte data = readExpander();
     //put a switch case here to mask the data to read each limit switch
 }
-
-
 
 
 
