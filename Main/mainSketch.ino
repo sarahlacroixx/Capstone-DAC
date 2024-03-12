@@ -4,6 +4,8 @@
 #include <AccelStepper.h> //library for stepper motors
 #include <SparkFunTMP102.h>
 #include "SparkFun_ENS160.h"
+#include <esp_now.h> //ESPnow to connect to slave
+#include <WiFi.h> //wifi to connect to slave
 
 //set up motors
 AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
