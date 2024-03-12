@@ -1,7 +1,10 @@
 
 
-void lcdDisplayWithPot(int pot, char display, int chambTemp, int elecTemp, int inCo2, int outCo2, int flowCo2){
-  value = map(pot, 0, 4, 0, 1023);
+void lcdDisplayWithPot(char display, int chambTemp, int elecTemp, int inCo2, int outCo2, int flowCo2){
+  //change pot to the pin number associated with the potentiometer
+  int analogValue = analogRead(pot);
+
+  value = map(analogValue, 0, 3, 0, 1023);
   switch(value){
     case 0:
       displayChar(display, 0);
@@ -26,6 +29,8 @@ void lcdDisplayWithPot(int pot, char display, int chambTemp, int elecTemp, int i
   }
   
 }
+
+
 void displayChambTemp(int chambTemp, int spot){
       lcd.setCursor(0, spot);
       lcd.print("Temperature: ");
