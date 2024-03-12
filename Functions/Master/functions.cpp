@@ -131,19 +131,6 @@ long readCO2(ADS1115 ADS, int channel){
 }
 
 
-//NOT MY FUNCTION (FROM INTERNET - NEED TO REFERENCE)
-int movingAvg(int *ptrArrNumbers, long *ptrSum, int pos, int len, int nextNum)
-{
-  //Subtract the oldest number from the prev sum, add the new number
-  *ptrSum = *ptrSum - ptrArrNumbers[pos] + nextNum;
-  //Assign the nextNum to the position in the array
-  ptrArrNumbers[pos] = nextNum;
-  //return the average
-  return *ptrSum / len;
-}
-
-
-
 float checkTempElecBox(TMP102 sensor0) {
   float temperature;
 
