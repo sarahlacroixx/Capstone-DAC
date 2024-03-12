@@ -123,8 +123,8 @@ void startFans(){
 }
 
 void stopFans(){
-  digitalWrite(fan1, HIGH);
-  digitalWrite(fan2, HIGH);
+  digitalWrite(fan1, LOW);
+  digitalWrite(fan2, LOW);
 }
 
 void openValve(int valve){
