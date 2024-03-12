@@ -34,6 +34,10 @@ This code is for the "slave" esp32. This code controls the
 
 //relay solenoid pins
 
+//set up stepper motors
+AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
+AccelStepper motor2(motorInterfaceType, STEP2, DIR2);
+
 
 //include functions from espNOW
 typedef struct parameters {
