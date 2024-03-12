@@ -6,6 +6,7 @@
 #include "SparkFun_ENS160.h"
 #include <esp_now.h> //ESPnow to connect to slave
 #include <WiFi.h> //wifi to connect to slave
+#include "RunningAverage.h"
 
 //set up co2 sensor
 SparkFun_ENS160 co2Sensor1;
