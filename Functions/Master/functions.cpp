@@ -102,13 +102,46 @@ void lcdDisplayCapCO2(int finalCO2){
 }
 
 
-double checkCO2(SparkFun_ENS160 sensor){
-    const int CO2Value;
+int samples = 0;
+long checkCO2(SparkFun_ENS160 sensor, RunningAverage currAvg, ADS1115 ADS, int channel){
+    //load the first 10 samples
 
-    if(sensor.checkDataStatus()) {
-        CO2Value = sensor.getECO2();
+    currAvg.addValue(readCO2(ADS, channel));
+    samples++;
+
+    if (samples == 10){
+        samples = 0;
+        myRA.fillValue(400, 10);
     }
  }
+
+long readCO2(ADS1115 ADS, int channel){
+    int16_t val;
+    switch(channel){
+        case 0:
+            val = ADS.readADC(0);
+            break;
+        case 1:
+            val = ADS.readADC(1);
+            break;   
+    }
+
+    CO2Value = map(val, 0, 5, 0, 5000);
+    return CO2Value;
+}
+
+
+//NOT MY FUNCTION (FROM INTERNET - NEED TO REFERENCE)
+int movingAvg(int *ptrArrNumbers, long *ptrSum, int pos, int len, int nextNum)
+{
+  //Subtract the oldest number from the prev sum, add the new number
+  *ptrSum = *ptrSum - ptrArrNumbers[pos] + nextNum;
+  //Assign the nextNum to the position in the array
+  ptrArrNumbers[pos] = nextNum;
+  //return the average
+  return *ptrSum / len;
+}
+
 
 
 float checkTempElecBox(TMP102 sensor0) {
@@ -310,6 +343,7 @@ void readLS(int num){
     byte data = readExpander();
     //put a switch case here to mask the data to read each limit switch
 }
+
 
 
 
