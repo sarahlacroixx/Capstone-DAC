@@ -189,10 +189,10 @@ float thermister(ADS1115 ADS, int channel){
 //function to check all of the thermistors from each adc channel and return the average value
 float checkTherms(ADS1115 ADS){
     float sum = 0;
-    for (int i = 0; i<=2; i++){
+    for (int i = 0; i<=1; i++){
         sum = sum + thermistor(ADS, i);
     }
-    return sum/4;
+    return sum/2;
 }
 
 void heating(ADS1115 ADS, SparkFun_ENS160 co2Sensor2){
