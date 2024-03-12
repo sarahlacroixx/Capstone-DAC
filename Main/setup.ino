@@ -1,8 +1,31 @@
 void setup() {
   Serial.begin(115200);
-
   //set up I2C devices
   Wire.begin(6,7);
+
+  //set up wifi
+  WiFi.mode(WIFI_STA);
+  //initialize espnow
+  if (esp_now_init() != ESP_OK) {
+    Serial.println("Error initializing ESP-NOW");
+    return;
+  }
+  // Register the send callback
+  esp_now_register_send_cb(OnDataSent);
+
+  //THESE ARE FROM LIBRARY (NOT MINE)
+  // Register peer
+  memcpy(otherInfo.peer_addr, address, 6);
+  peerInfo.channel = 0;  
+  peerInfo.encrypt = false;
+
+  // Add peer        
+  if (esp_now_add_peer(&peerInfo) != ESP_OK){
+    Serial.println("Failed to add peer");
+    return;
+  }
+
+
   
   //start with all pins
   //buttons and switches
