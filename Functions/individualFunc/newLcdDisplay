@@ -1,4 +1,5 @@
 
+//function for a rotating lcd display
 
 void lcdDisplayWithPot(char display, int chambTemp, int elecTemp, int inCo2, int outCo2, int flowCo2){
   //change pot to the pin number associated with the potentiometer
