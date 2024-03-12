@@ -32,16 +32,6 @@ void setup() {
   pinMode(startButton, INPUT);
   pinMode(stopButton, INPUT);
   pinMode(limitSwitch, OUTPUT);
-
-  //relay for heaters
-  //pinMode(relay1, OUTPUT);
-
-  //fans
-  //pinMode(fan1, OUTPUT);
-  //pintMode(fan2, OUTPUT);
-
-  //relay for valve
-  //pinMode(valveRelay, INPUT);
   
 
   //set stepper motors
