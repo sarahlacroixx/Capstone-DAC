@@ -7,10 +7,6 @@
 #include <esp_now.h> //ESPnow to connect to slave
 #include <WiFi.h> //wifi to connect to slave
 
-//set up motors
-AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
-AccelStepper motor2(motorInterfaceType, STEP2, DIR2);
-
 //set up co2 sensor
 SparkFun_ENS160 co2Sensor1;
 SparkFun_ENS160 co2Sensor2;
