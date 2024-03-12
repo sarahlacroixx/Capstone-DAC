@@ -298,6 +298,18 @@ void displayClock(unsigned long StartTime){
   
 }
 
+void readExpander(){
+    Wire.beginTransmission(0x20);
+     Wire.write(0x12); // set MCP23017 memory pointer to GPIOB address
+     Wire.endTransmission();
+     Wire.requestFrom(0x20, 1); // request one byte of data from MCP20317
+     data=Wire.read(); //receive data in binary
+}
+
+void readLS(int num){
+    data = readExpander();
+    //put a switch case here to mask the data to read each limit switch
+}
 
 
 
