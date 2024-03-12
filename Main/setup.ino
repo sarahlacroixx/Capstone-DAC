@@ -15,7 +15,7 @@ void setup() {
 
   //THESE ARE FROM LIBRARY (NOT MINE)
   // Register peer
-  memcpy(otherInfo.peer_addr, address, 6);
+  memcpy(peerInfo.peer_addr, address, 6);
   peerInfo.channel = 0;  
   peerInfo.encrypt = false;
 
