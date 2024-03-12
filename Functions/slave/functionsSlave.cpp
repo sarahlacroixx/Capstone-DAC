@@ -12,11 +12,11 @@ typedef struct parameters {
 
 } parameters;
 
-parameter highVolt;
+parameters highVolt;
 
 //FUNCTION FROM LIBRARY
 //everything should happen in this function
-void OnDataRecv(const uint8_t * mac, const uint8_t *recData, int len) {
+void OnDataRecv(const esp_now_recv_info_t * mac, const uint8_t *recData, int len) {
   memcpy(&highVolt, recData, sizeof(highVolt));
   checkFans();
   checkHeat();
