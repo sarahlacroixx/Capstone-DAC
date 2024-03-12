@@ -270,6 +270,7 @@ void coolDown(AccelStepper motor1, AccelStepper motor2, int fan1, int fan2, ADS1
     delay(200);
 }
 
+//display the elaspsed time on the lcd screen
 void displayClock(unsigned long StartTime){
   lcd.setCursor(0,3);
   unsigned long CurrentTime = millis();
@@ -331,6 +332,8 @@ void readLS(int num){
     //put a switch case here to mask the data to read each limit switch
 }
 
+
+//function to read the flow rate co2 sensor (the outputted co2 into the tank)
 void readFlowCO2(){
     uint8_t data[2];
     int rawFlowData;
