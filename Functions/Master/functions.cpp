@@ -103,7 +103,7 @@ void lcdDisplayCapCO2(int finalCO2){
 
 
 int samples = 0;
-long checkCO2(SparkFun_ENS160 sensor, RunningAverage currAvg, ADS1115 ADS, int channel){
+long checkCO2(RunningAverage currAvg, ADS1115 ADS, int channel){
     //load the first 10 samples
 
     currAvg.addValue(readCO2(ADS, channel));
