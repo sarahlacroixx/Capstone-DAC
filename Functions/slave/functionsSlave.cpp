@@ -25,14 +25,17 @@ This code is for the "slave" esp32. This code controls the
 #DEFINE motorInterfacetype 1
 
 //relay heat pins
+int heat 0;
 
 //fan pins
-#DEFINE fan1 10
-#DEFINE fan2 11
+int fan1 10;
+int fan2 11;
 
 //pump
+int pump 0;
 
 //relay solenoid pins
+int valve 0;
 
 //set up stepper motors
 AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
@@ -73,6 +76,19 @@ void setup(){
   }
   // callback function
   esp_now_register_recv_cb(OnDataRecv);
+
+  //relay for heaters
+  pinMode(relay1, OUTPUT);
+
+  //fans
+  pinMode(fan1, OUTPUT);
+  pintMode(fan2, OUTPUT);
+
+  //relay for valve
+  pinMode(valveRelay, OUTPUT);
+
+  //set up pump
+  pinMode(pump, OUTPUT);
 
   
 }
