@@ -1,4 +1,6 @@
 int samples = 0;
+
+//check co2 takes the runing average, not needed anymore
 long checkCO2(RunningAverage currAvg, ADS1115 ADS, int channel){
     //load the first 10 samples
 
@@ -11,7 +13,7 @@ long checkCO2(RunningAverage currAvg, ADS1115 ADS, int channel){
     }
  }
 
-long readCO2(ADS1115 ADS, int channel){
+float readCO2(ADS1115 ADS, int channel){
     int16_t val;
     switch(channel){
         case 0:
@@ -21,7 +23,9 @@ long readCO2(ADS1115 ADS, int channel){
             val = ADS.readADC(1);
             break;   
     }
+    float f = ADS.toVoltage(2);
+    float reading = val * f/2;
 
-    CO2Value = map(val, 0, 5, 0, 5000);
+    float CO2Value = reading*500.00;
     return CO2Value;
 }
