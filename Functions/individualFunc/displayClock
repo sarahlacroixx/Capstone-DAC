@@ -1,5 +1,5 @@
 void displayClock(unsigned long StartTime, int spot){
-  lcd.setCursor(0,3);
+  lcd.setCursor(0,spot);
   unsigned long CurrentTime = millis();
   unsigned long ElapsedTime = CurrentTime - StartTime;
   int hour = 0;
