@@ -1,32 +1,51 @@
 
 //function for a rotating lcd display
 
-void lcdDisplayWithPot(char display, int chambTemp, int elecTemp, int inCo2, int outCo2, int flowCo2){
-  //change pot to the pin number associated with the potentiometer
-  int analogValue = analogRead(pot);
+unsigned long StartTime = millis();
+int prevValue = 0;
 
-  value = map(analogValue, 0, 3, 0, 1023);
+
+void lcdDisplayWithPot(const char display, int chambTemp, int elecTemp, int inCo2, int outCo2, int flowCo2){
+  //change pot to the pin number associated with the potentiometer
+  int analogValue = analogRead(1);
+
+  int value = map(analogValue, 0, 3127, 0, 3);
+
+  if (prevValue != value){
+    lcd.clear();
+  }
+  Serial.println(value);
   switch(value){
     case 0:
       displayChar(display, 0);
       displayChambTemp(chambTemp, 1);
       displayInCo2(inCo2, 2);
-      displayOutCo2(outCo2, 3):
+      displayOutCo2(outCo2, 3);
+      prevValue = value;
+      break;
     case 1:
+
       displayChambTemp(chambTemp, 0);
       displayInCo2(inCo2, 1);
-      displayOutCo2(outCo2, 2):
+      displayOutCo2(outCo2, 2);
       displayClock(StartTime, 3);
+      prevValue = value;
+      break;
     case 2:
+   
       displayInCo2(inCo2, 0);
-      displayOutCo2(outCo2, 1):
+      displayOutCo2(outCo2, 1);
       displayClock(StartTime, 2);
       displayElecTemp(elecTemp, 3);
+      prevValue = value;
+      break;
     case 3:
-      displayOutCo2(outCo2, 0):
+      displayOutCo2(outCo2, 0);
       displayClock(StartTime, 1);
       displayElecTemp(elecTemp, 2);
       displayFlowCo2(flowCo2, 3);
+      prevValue = value;
+      break;
   }
   
 }
