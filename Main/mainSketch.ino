@@ -22,6 +22,8 @@ const int green = 3;
 const int yellow = 2;
 const int curSen = 10;
 const int pot = 0;
+const int ledColumns 20
+const int ledRows 4
 
 //set up co2 sensor
 SparkFun_ENS160 co2Sensor1;
