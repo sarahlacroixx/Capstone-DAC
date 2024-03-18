@@ -58,7 +58,7 @@ void displayChambTemp(int chambTemp, int spot){
       lcd.print(chambTemp);
 }
 
-void displayChar(char display, int spot){
+void displayChar(char[] display, int spot){
       lcd.setCursor(0, spot);
       lcd.print(display);
 }
