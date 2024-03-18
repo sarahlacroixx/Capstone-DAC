@@ -90,4 +90,20 @@ void setup() {
   Wire.write(0xFF); //set bank to inputs
   Wire.endTransmission();
 
+
+  //setting up SD card
+  SPIClass SPI2(SPI);
+  SPI2.begin(SCLK, MISO, MOSI, CS);
+
+  while (!Serial) { ; }  // wait for serial port to connect. Needed for native USB port only
+  Serial.println("Initializing SD card...");
+  if (!SD.begin(CS, SPI2)) {
+    Serial.println("initialization failed!");
+    return;
+  }
+  Serial.println("initialization done.");
+
+  WriteFile(SD, "/co2Data.txt", "Time, Inlet CO2, Outlet CO2 \r\n");
+  WriteFile(SD, "/tempData.txt", "Time, Inlet CO2, Outlet CO2 \r\n");
+
 }
