@@ -74,7 +74,6 @@ void IRAM_ATTR detectStart2(){
 
 void IRAM_ATTR detectStop(){
   sendData(0, false, false, false, false, 0);
-  unsigned long StartTime = 0;
   startTrigger = false;
 
 }
