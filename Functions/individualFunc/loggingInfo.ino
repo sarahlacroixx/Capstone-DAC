@@ -13,25 +13,30 @@ void logSDCardTemp(float time, float temp) {
   appendFile(SD, "/tempData.txt", data2.c_str());
 }
 
-
-//Random nerd tutorials functions
-void writeFile(fs::FS &fs, const char * path, const char * message) {
-  Serial.printf("Writing file: %s\n", path);
-
-  File file = fs.open(path, FILE_WRITE);
-  if(!file) {
-    Serial.println("Failed to open file for writing");
-    return;
-  }
-  if(file.print(message)) {
-    Serial.println("File written");
-  } else {
-    Serial.println("Write failed");
-  }
-  file.close();
+void setup(){
+  writeFile(SD, "/co2Data.txt", "Time, Inlet CO2, Outlet CO2 \r\n");
+  writeFile(SD, "/tempData.txt", "Time, Inlet CO2, Outlet CO2 \r\n");
 }
 
 
+//Random nerd tutorials functions - need to reference
+void WriteFile(const char * path, const char * message){
+  // open the file. note that only one file can be open at a time,
+  // so you have to close this one before opening another.
+  myFile = SD.open(path, FILE_WRITE);
+  // if the file opened okay, write to it:
+  if (myFile) {
+    myFile.println(message);
+  } 
+  // if the file didn't open, print an error:
+  else {
+    Serial.println("error opening file ");
+    Serial.println(path);
+  }
+  myFile.close(); // close the file:
+}
+
+//random nerd tutorial function (not mine)
 // Append data to the SD card (DON'T MODIFY THIS FUNCTION)
 void appendFile(fs::FS &fs, const char * path, const char * message) {
   Serial.printf("Appending to file: %s\n", path);
