@@ -7,7 +7,7 @@ int prevValue = 0;
 
 void lcdDisplayWithPot(char[] display, int chambTemp, int elecTemp, int inCo2, int outCo2, int flowCo2){
   //change pot to the pin number associated with the potentiometer
-  int analogValue = analogRead(1);
+  int analogValue = analogRead(pot);
 
   int value = map(analogValue, 0, 3127, 0, 3);
 
