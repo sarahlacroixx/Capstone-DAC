@@ -13,11 +13,7 @@ This code is for the "slave" esp32. This code controls the
 #include <esp_now.h>
 #include <WiFi.h>
 
-
-
 #DEFINE motorInterfacetype 1
-
-
 
 //include functions from espNOW
 typedef struct parameters {
@@ -33,7 +29,7 @@ typedef struct parameters {
 parameters highVolt;
 
 //FUNCTION FROM LIBRARY
-//everything should happen in this function
+//everything should happen in this function (when data is received it will run through this function
 void OnDataRecv(const esp_now_recv_info_t * mac, const uint8_t *recData, int len) {
   memcpy(&highVolt, recData, sizeof(highVolt));
   checkPins();
@@ -57,21 +53,6 @@ void setup(){
   }
   // callback function
   esp_now_register_recv_cb(OnDataRecv);
-
-  //relay for heaters
-  pinMode(relay1, OUTPUT);
-
-  //fans
-  pinMode(fan1, OUTPUT);
-  pintMode(fan2, OUTPUT);
-
-  //relay for valve
-  pinMode(valveRelay, OUTPUT);
-
-  //set up pump
-  pinMode(pump, OUTPUT);
-
-  
 }
 
 void loop(){
@@ -215,8 +196,19 @@ void cham1PinAssign(){
   const int heatPin = 23;
     AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
     AccelStepper motor2(motorInterfaceType, STEP2, DIR2);
+ //relay for heaters
+  pinMode(heatPin, OUTPUT);
+
+  //fans
+  pinMode(fanPin, OUTPUT);
+  //relay for valve
+  pinMode(valvePin, OUTPUT);
+
+  //set up pump
+  pinMode(pumpPin, OUTPUT);
   
 }
+
 //pin assignments for chamber 2
 void cham2PinAssign(){
   //SLAVE PINS for chamber 2
@@ -232,5 +224,16 @@ void cham2PinAssign(){
   const int heatPin = TXD; // NEED TO FIX THIS
     AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
     AccelStepper motor2(motorInterfaceType, STEP2, DIR2);
+    
+//relay for heaters
+  pinMode(heatPin, OUTPUT);
+
+  //fans
+  pinMode(fanPin, OUTPUT);
+  //relay for valve
+  pinMode(valvePin, OUTPUT);
+
+  //set up pump
+  pinMode(pumpPin, OUTPUT);
   
 }
