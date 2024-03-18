@@ -21,8 +21,14 @@ void adsorption(AccelStepper motor1, AccelStepper motor2, int fan1, int fan2, AD
     sendData(false, true, false, false);
     //FIX CODE HERE TO CLOSE STEPPER MOTORS
     stepperMotorsClose(motor1, motor2);
+        
     
 }
+
+void checkParameters(){
+
+  }
+          
 
 void heating(ADS1115 ADS, SparkFun_ENS160 co2Sensor2){
     float currentTemp = checkTherms(ADS);
