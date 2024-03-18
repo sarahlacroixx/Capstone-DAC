@@ -8,6 +8,11 @@
 #include <WiFi.h> //wifi to connect to slave
 #include "RunningAverage.h"
 
+//start/stop buttons for chamber
+const int start1 = 23;
+const int start2 = 1;
+const int stop = 22;
+
 //set up co2 sensor
 SparkFun_ENS160 co2Sensor1;
 SparkFun_ENS160 co2Sensor2;
@@ -47,9 +52,9 @@ void loop() {
   
 
 
-void IRAM_ATTR detectStart(){
+void IRAM_ATTR detectStart1(){
+  
   startTrigger = true;
- 
 
 }
 
@@ -72,10 +77,41 @@ void cham1PinAssign(){
   //SLAVE PINS
   const int curSen12v = 6;
   const int fan = 7;
-  const int pump 0;
+  const int pump = 0;
   const int DIR = 1;
   const int STEP1 = 10;
   const int STEP2 = 11;
   const int ls1 = 21;
-  const int ls2 20;
+  const int ls2 = 20;
+  const int valve = 22;
+  const int heat = 23;
+  
 }
+
+void cham2PinAssign(){
+  //MASTER PINS
+  const int miso = 20;
+  const int sclk = 21;
+  const int mosi = 19;
+  const int cs = 18;
+  const int red = 11;
+  const int green = 3;
+  const int yellow = 2;
+  const int curSen = 10;
+  const int pot = 0;
+
+  //SLAVE PINS
+  const int curSen12v = 6;
+  const int fan = 13;
+  const int pump = 0;
+  const int DIR = 1;
+  const int STEP1 = 2;
+  const int STEP2 = 3;
+  const int ls1 = 19;
+  const int ls2 = 18;
+  const int valve = 12;
+  const int heat = TXD; // NEED TO FIX THIS
+  
+}
+
+
