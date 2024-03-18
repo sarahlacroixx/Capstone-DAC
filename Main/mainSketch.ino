@@ -63,19 +63,19 @@ void loop() {
 
 
 void IRAM_ATTR detectStart1(){
-  
+  sendData(1, false, false, false, false);
   startTrigger = true;
 
 }
 
 void IRAM_ATTR detectStart2(){
-  
+  sendData(2, false, false, false, false);
   startTrigger = true;
 
 }
 
 void IRAM_ATTR detectStop(){
-  
+  sendData(2, false, false, false, false);
   startTrigger = true;
 
 }
