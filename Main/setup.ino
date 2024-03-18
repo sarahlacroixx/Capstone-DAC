@@ -46,7 +46,9 @@ void setup() {
   lcd.backlight();
 
   // set interrupts
-  attachInterrupt(digitalPinToInterrupt(0), detectStart, RISING);
+  attachInterrupt(digitalPinToInterrupt(start1), detectStart1, RISING);
+  attachInterrupt(digitalPinToInterrupt(start2), detectStart2, RISING);
+  attachInterrupt(digitalPinToInterrupt(stop), detectStop, RISING);
   //attachInterrupt(digitalPinToInterrupt(stopButton), detectStop, RISING);
 
   //set up electrical box sensor
