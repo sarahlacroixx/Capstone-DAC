@@ -57,3 +57,25 @@ void IRAM_ATTR checkTimer(){
   timerFlag = true;
 }
 
+void cham1PinAssign(){
+  //MASTER PINS
+  const int miso = 20;
+  const int sclk = 21;
+  const int mosi = 19;
+  const int cs = 18;
+  const int red = 11;
+  const int green = 3;
+  const int yellow = 2;
+  const int curSen = 10;
+  const int pot = 0;
+
+  //SLAVE PINS
+  const int curSen12v = 6;
+  const int fan = 7;
+  const int pump 0;
+  const int DIR = 1;
+  const int STEP1 = 10;
+  const int STEP2 = 11;
+  const int ls1 = 21;
+  const int ls2 20;
+}
