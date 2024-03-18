@@ -6,7 +6,6 @@
 #include "SparkFun_ENS160.h"
 #include <esp_now.h> //ESPnow to connect to slave
 #include <WiFi.h> //wifi to connect to slave
-#include "RunningAverage.h"
 
 //start/stop buttons for chamber
 const int start1 = 23;
@@ -70,6 +69,12 @@ void IRAM_ATTR detectStart1(){
 }
 
 void IRAM_ATTR detectStart2(){
+  
+  startTrigger = true;
+
+}
+
+void IRAM_ATTR detectStop(){
   
   startTrigger = true;
 
