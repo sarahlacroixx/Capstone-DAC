@@ -6,6 +6,7 @@ typedef struct parameters {
     bool fans;
     bool pump;
     bool valve;
+    int motors;
 
 } parameters;
 
