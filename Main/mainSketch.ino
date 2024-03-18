@@ -69,6 +69,12 @@ void IRAM_ATTR detectStart1(){
 
 }
 
+void IRAM_ATTR detectStart2(){
+  
+  startTrigger = true;
+
+}
+
 void IRAM_ATTR checkTimer(){
   timerFlag = true;
 }
