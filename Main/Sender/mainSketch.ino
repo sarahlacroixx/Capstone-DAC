@@ -25,10 +25,6 @@ const int pot = 0;
 const int ledColumns 20
 const int ledRows 4
 
-//set up co2 sensor
-SparkFun_ENS160 co2Sensor1;
-SparkFun_ENS160 co2Sensor2;
-
 //set up electric box sensor
 TMP102 elecSensor;
 
@@ -64,18 +60,21 @@ void loop() {
 
 void IRAM_ATTR detectStart1(){
   sendData(1, false, false, false, false, 0);
+  unsigned long StartTime = millis();
   startTrigger = true;
 
 }
 
 void IRAM_ATTR detectStart2(){
   sendData(2, false, false, false, false, 0);
+  unsigned long StartTime = millis();
   startTrigger = true;
 
 }
 
 void IRAM_ATTR detectStop(){
   sendData(0, false, false, false, false, 0);
+  unsigned long StartTime = 0;
   startTrigger = false;
 
 }
