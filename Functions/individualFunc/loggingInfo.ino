@@ -13,11 +13,6 @@ void logSDCardTemp(float time, float temp) {
   appendFile(SD, "/tempData.txt", data2.c_str());
 }
 
-void setup(){
-  writeFile(SD, "/co2Data.txt", "Time, Inlet CO2, Outlet CO2 \r\n");
-  writeFile(SD, "/tempData.txt", "Time, Inlet CO2, Outlet CO2 \r\n");
-}
-
 
 //Random nerd tutorials functions - need to reference
 void WriteFile(const char * path, const char * message){
