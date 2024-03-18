@@ -9,7 +9,7 @@ typedef struct currParameters{
 
 currParameters curr;
 
-currParameters checkParameters(ADS1115 ADS, TMP102 elecSensor){
+void checkParameters(ADS1115 ADS, TMP102 elecSensor){
     curr.inCo2 = readCO2(ADS, 0); // NEED TO FIX CHANNEL HERE
     curr.outCo2 = readCO2(ADS, 1); // NEED TO FIX CHANNEL HERE
     curr.currentTemp = checkTherms(ADS);
