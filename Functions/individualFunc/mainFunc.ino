@@ -1,15 +1,19 @@
 void adsorption(AccelStepper motor1, AccelStepper motor2, int fan1, int fan2, ADS1115 ADS, SparkFun_ENS160 co2Sensor1){
-    double currentCO2 = checkCO2(co2Sensor1);
+    float inCo2 = readCO2(ADS, 0); // NEED TO FIX CHANNEL HERE
+    float outCo2 = readCO2(ADS, 1); // NEED TO FIX CHANNEL HERE
     float currentTemp = checkTherms(ADS);
+    float elecTemp = 
     double prevCO2 = 0;
     //start fans
     sendData(false, true, false, false);
     //wait for 150 minutes to go by
     while (timerFlag = false) {
-        lcdDisplayAdsorption(currentTemp, currentCO2);
-        prevCO2 = currentCO2;
-        currentCO2 = checkCO2(co2Sensor1);
+        lcdDisplayWithPot("Adsorption", currentTemp, int elecTemp, int inCo2, int outCo2, int flowCo2
+
+        inCo2 = readCO2(ADS, 0); // NEED TO FIX CHANNEL HERE
+        outCo2 = readCO2(ADS, 1); // NEED TO FIX CHANNEL HERE
         currentTemp = checkTherms(ADS);
+    
     }
     //set timer back to false for next cycle
     timerFlag = false;
