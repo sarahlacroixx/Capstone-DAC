@@ -13,15 +13,8 @@ This code is for the "slave" esp32. This code controls the
 #include <esp_now.h>
 #include <WiFi.h>
 
-//stepper motor pins
-#DEFINE DIR1  28
-#DEFINE STEP1  27
-#DEFINE DIR2  26
-#DEFINE STEP2  25
-#DEFINE DIR3  24
-#DEFINE STEP3  23
-#DEFINE DIR4  20
-#DEFINE STEP4  19
+
+
 #DEFINE motorInterfacetype 1
 
 //relay heat pins
@@ -38,12 +31,12 @@ int pump 0;
 int valve 0;
 
 //set up stepper motors
-AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
-AccelStepper motor2(motorInterfaceType, STEP2, DIR2);
+
 
 
 //include functions from espNOW
 typedef struct parameters {
+    int pinAssign;
     bool heat;
     bool fans;
     bool pump;
@@ -96,6 +89,16 @@ void setup(){
 void loop(){
   //chill and wait for data to be received
 }
+
+void checkPins(){
+    if (highVolt.pinAssign == 1) {
+        cham1PinAssign();
+    }
+    else{
+        cham2PinAssign();
+    }
+}
+
 void checkFans(){
   if (highVolt.fans == true){
     startFans();
@@ -134,37 +137,35 @@ void checkValve(){
 
 //function to start fans
 void startFans(){
-  digitalWrite(fan1, HIGH);
-  digitalWrite(fan2, HIGH);
+  digitalWrite(fanPin, HIGH);
 }
 
 void stopFans(){
-  digitalWrite(fan1, LOW);
-  digitalWrite(fan2, LOW);
+  digitalWrite(fanPin, LOW);
 }
 
-void openValve(int valve){
-  digitalWrite(valve, HIGH);
+void openValve(int valvePin){
+  digitalWrite(valvePin, HIGH);
 }
 
-void closeValve(int valve){
-  digitalWrite(valve, LOW);
+void closeValve(int valvePin){
+  digitalWrite(valvePin, LOW);
 }
 
-void startPump(int pump){
-  digitalWrite(pump, HIGH);
+void startPump(int pumpPin){
+  digitalWrite(pumpPin, HIGH);
 }
 
-void stopPump(int pump){
-  digitalWrite(pump, LOW);
+void stopPump(int pumpPin){
+  digitalWrite(pumpPin, LOW);
 }
 
-void heatON(int relay){
-    digitalWrite(relay, LOW);
+void heatON(int heatPin){
+    digitalWrite(heatPin, HIGH);
 }
 
-void hearOFF(int relay){
-    digitalWrite(relay, LOW);
+void hearOFF(int heatPin){
+    digitalWrite(heatPin, LOW);
 }
 
 void stepperMotorsClose(AccelStepper motor1, AccelStepper motor2){
@@ -178,4 +179,38 @@ void stepperMotorsClose(AccelStepper motor1, AccelStepper motor2){
 
 void stepperMotorsOpen(AccelStepper motor1, AccelStepper motor2){
     //add code here to open stepper motor
+}
+
+void cham1PinAssign(){
+  //SLAVE PINS for chamber 1
+  const int curSen12v = 6;
+  const int fanPin = 7;
+  const int pumpPin = 0;
+  const int DIR = 1;
+  const int STEP1 = 10;
+  const int STEP2 = 11;
+  const int ls1 = 21;
+  const int ls2 = 20;
+  const int valvePin = 22;
+  const int heatPin = 23;
+    AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
+    AccelStepper motor2(motorInterfaceType, STEP2, DIR2);
+  
+}
+
+void cham2PinAssign(){
+  //SLAVE PINS for chamber 2
+  const int curSen12v = 6;
+  const int fanPin = 13;
+  const int pumpPin = 0;
+  const int DIR = 1;
+  const int STEP1 = 2;
+  const int STEP2 = 3;
+  const int ls1 = 19;
+  const int ls2 = 18;
+  const int valvePin = 12;
+  const int heatPin = TXD; // NEED TO FIX THIS
+    AccelStepper motor1(motorInterfaceType, STEP1, DIR1);
+    AccelStepper motor2(motorInterfaceType, STEP2, DIR2);
+  
 }
