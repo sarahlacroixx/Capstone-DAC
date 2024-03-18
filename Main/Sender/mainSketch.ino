@@ -49,9 +49,9 @@ void loop() {
 
   switch (startTrigger) {
     case true:
-      adsorption(motor1, motor2, fan1, fan2, ADS, co2Sensor1);
-      desorption(1, 1, ADS, co2Sensor2);
-      coolDown(motor1, motor2, fan1, fan2, ADS, co2Sensor2);
+      adsorption(ADS, elecSensor);
+      desorption(ADS, elecSensor);
+      coolDown(ADS, elecSensor);
       startTrigger = false;
       break;
     case false:
@@ -63,20 +63,20 @@ void loop() {
 
 
 void IRAM_ATTR detectStart1(){
-  sendData(1, false, false, false, false);
+  sendData(1, false, false, false, false, 0);
   startTrigger = true;
 
 }
 
 void IRAM_ATTR detectStart2(){
-  sendData(2, false, false, false, false);
+  sendData(2, false, false, false, false, 0);
   startTrigger = true;
 
 }
 
 void IRAM_ATTR detectStop(){
-  sendData(2, false, false, false, false);
-  startTrigger = true;
+  sendData(0, false, false, false, false, 0);
+  startTrigger = false;
 
 }
 
