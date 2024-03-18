@@ -1,4 +1,4 @@
-void readFlowCO2(){
+int readFlowCO2(){
     uint8_t data[2];
     int rawFlowData;
 
