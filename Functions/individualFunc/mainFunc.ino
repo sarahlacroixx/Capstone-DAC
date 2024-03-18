@@ -43,7 +43,7 @@ void heating(ADS1115 ADS, TMP102 elecSensor){
     //turn the heat on here
     sendData(0, true, false, false, false, 0);
     while (curr.currentTemp < 125) {
-        lcdDisplayWithPot("Adsorption", curr.currentTemp, curr.elecTemp, curr.inCo2, curr.outCo2, 0);
+        lcdDisplayWithPot("Heating", curr.currentTemp, curr.elecTemp, curr.inCo2, curr.outCo2, 0);
         checkParameters(ADS, elecSensor);
     }
 }
