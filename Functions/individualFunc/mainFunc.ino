@@ -28,6 +28,7 @@ void adsorption(ADS1115 ADS, TMP102 elecSensor){
         //flow co2 is 0 as it is not applicable in adsorption phase
         lcdDisplayWithPot("Adsorption", curr.currentTemp, curr.elecTemp, curr.inCo2, curr.outCo2, 0);
         checkParameters(ADS, elecSensor);
+
     }
     //set timer back to false for next cycle
     timerFlag = false;
