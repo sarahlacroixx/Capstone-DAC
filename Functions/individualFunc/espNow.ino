@@ -1,6 +1,7 @@
 uint8_t slaveAddress[] = {0x24, 0x6F, 0x28, 0x7A, 0xAE, 0x7C}; //NEED TO UPDATE
 
 typedef struct parameters {
+    int pinAssign;
     bool heat;
     bool fans;
     bool pump;
@@ -19,7 +20,8 @@ void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {
 }
 
 //function to send data to slave esp32
-void sendData(bool heat, bool fans, bool pump, bool valve){
+void sendData(int pinAssign, bool heat, bool fans, bool pump, bool valve){
+    highVolt.pinAssign = pinAssign;
     highVolt.heat = heat;
     highVolt.fans = fan;
     highVolt.pump = pump;
