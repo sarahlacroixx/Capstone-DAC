@@ -17,21 +17,6 @@ This code is for the "slave" esp32. This code controls the
 
 #DEFINE motorInterfacetype 1
 
-//relay heat pins
-int heat 0;
-
-//fan pins
-int fan1 10;
-int fan2 11;
-
-//pump
-int pump 0;
-
-//relay solenoid pins
-int valve 0;
-
-//set up stepper motors
-
 
 
 //include functions from espNOW
@@ -50,6 +35,7 @@ parameters highVolt;
 //everything should happen in this function
 void OnDataRecv(const esp_now_recv_info_t * mac, const uint8_t *recData, int len) {
   memcpy(&highVolt, recData, sizeof(highVolt));
+  checkPins();
   checkFans();
   checkHeat();
   checkPump();
@@ -170,7 +156,7 @@ void hearOFF(int heatPin){
 
 void stepperMotorsClose(AccelStepper motor1, AccelStepper motor2){
     //change pin number depending on limit switch pin
-    while (digitalRead(7) == LOW) {
+    while (digitalRead(ls1) == LOW && digitalRead(ls2) == LOW) {
         motor1.run();
         motor2.run();
     }
@@ -179,8 +165,20 @@ void stepperMotorsClose(AccelStepper motor1, AccelStepper motor2){
 
 void stepperMotorsOpen(AccelStepper motor1, AccelStepper motor2){
     //add code here to open stepper motor
-}
+    motor1.moveTo(80);
+    motor2.moveTo(80;
+    motor1.setSpeed(-25);
+    motor2.setSpeed(-25);
 
+    if (!motor1.run() && !motor2.run()) {
+        motor1.moveTo(-motor1.currentPosition());
+        motor1.moveTo(-motor1.currentPosition());
+    }
+    motor1.run();
+    motor2.run();
+    
+}
+//Pin assignments for chamber 1
 void cham1PinAssign(){
   //SLAVE PINS for chamber 1
   const int curSen12v = 6;
@@ -197,7 +195,7 @@ void cham1PinAssign(){
     AccelStepper motor2(motorInterfaceType, STEP2, DIR2);
   
 }
-
+//pin assignments for chamber 2
 void cham2PinAssign(){
   //SLAVE PINS for chamber 2
   const int curSen12v = 6;
