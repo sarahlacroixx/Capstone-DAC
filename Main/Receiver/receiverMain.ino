@@ -26,6 +26,7 @@ typedef struct parameters {
     bool fans;
     bool pump;
     bool valve;
+    int motors;
 
 } parameters;
 
@@ -40,6 +41,7 @@ void OnDataRecv(const esp_now_recv_info_t * mac, const uint8_t *recData, int len
   checkHeat();
   checkPump();
   checkValve();
+  checkMotors();
 }
 
 void setup(){
@@ -77,11 +79,15 @@ void loop(){
 }
 
 void checkPins(){
-    if (highVolt.pinAssign == 1) {
-        cham1PinAssign();
-    }
-    else{
-        cham2PinAssign();
+    switch (highVolt.motors){
+        case 1:
+            cham1PinAssign();
+            break;
+        case 2:
+            cham2PinAssign();
+            break;
+        case 3:
+            break;
     }
 }
 
@@ -119,6 +125,22 @@ void checkValve(){
   else{
     closeValve();
   }
+}
+
+void checkMotors(){
+    //0 is do nothing
+    //1 is close stepper motors
+    //2 is open stepper motors
+    switch (highVolt.motors){
+        case 1:
+            stepperMotorsClose(motor1, motor2);
+            break;
+        case 2:
+            stepperMotorsClose(motor1, motor2);
+            break;
+        case 3:
+            break;
+    }
 }
 
 //function to start fans
