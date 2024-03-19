@@ -13,6 +13,13 @@ void logSDCardTemp(float time, float temp) {
   appendFile(SD, "/tempData.txt", data2.c_str());
 }
 
+void logSDCardOutCO2(float time, float outCo2) {
+  data3 = String(time) + "," + String(outCo2) + "\r\n";
+  //Serial.print("Save data: ");
+  //Serial.println(data);
+  appendFile(SD, "/outputtedData.txt", data3.c_str());
+}
+
 
 //Random nerd tutorials functions - need to reference
 void WriteFile(const char * path, const char * message){
