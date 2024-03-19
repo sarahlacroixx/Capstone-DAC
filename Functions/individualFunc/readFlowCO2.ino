@@ -1,6 +1,6 @@
 int readFlowCO2(){
     uint8_t data[2];
-    int rawFlowData;
+    uint_16t rawFlowData;
 
     
     //need to get address of i2c for sensor (i think 0x03 for co2)
@@ -16,6 +16,10 @@ int readFlowCO2(){
     flowData[0] = Wire.read();
     flowData[1] = Wire.read();
     rawFlowData = (flowData[0] << 8) | flowData[1];
+    if ( rawFlowData <20001){
     return rawFlowData;
+    } else{
+        return 0; //false reading will return 0
+    }
 
 }
