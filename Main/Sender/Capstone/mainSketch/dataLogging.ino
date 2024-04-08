@@ -1,21 +1,17 @@
-//NOT MY FUNCTION - NEED TO CHANGE
+// function was modified from the nerd tutorials on the implementation of google sheets
 
 void dataLogging(){
   bool ready = GSheet.ready();
   FirebaseJson response;
 
-  Serial.println("\nAppend spreadsheet values...");
-  Serial.println("----------------------------");
-
   FirebaseJson valueRange;
-  count++;
 
   unsigned long graphCurrentTime = millis();
   unsigned long graphElapsedTime = graphCurrentTime - StartTime;
 
   int temp1 = curr.centCurrentTemp;
   int temp2 = curr.sideCurrentTemp;
-  //int temp3 = thermister(ADS, 2);
+
   int inCo2 = curr.inCo2;
   int outCo2 = curr.outCo2;
   int flowCo2 = curr.flowCo2; 
