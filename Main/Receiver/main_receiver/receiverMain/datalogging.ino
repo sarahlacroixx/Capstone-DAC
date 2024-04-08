@@ -1,5 +1,4 @@
 // function was modified from the nerd tutorials on the implementation of google sheets
-int count;
 
 void dataLogging(){
   bool ready = GSheet.ready();
