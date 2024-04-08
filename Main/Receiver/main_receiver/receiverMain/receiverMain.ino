@@ -141,7 +141,7 @@ void loop(){
 }
 
 void checkPins(){
-  /*
+  
     switch (highVolt.motors){
         case 1:
             cham1PinAssign();
@@ -152,7 +152,7 @@ void checkPins(){
         case 3:
             break;
     }
-    */
+    
 }
 
 void checkFans(){
