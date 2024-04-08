@@ -1,25 +1,18 @@
-//NOT MY FUNCTION - NEED TO CHANGE
+// function was modified from the nerd tutorials on the implementation of google sheets
 int count;
 
 void dataLogging(){
   bool ready = GSheet.ready();
   FirebaseJson response;
 
-  Serial.println("\nAppend spreadsheet values...");
-  Serial.println("----------------------------");
-
   unsigned long graphCurrentTime = millis();
   unsigned long graphElapsedTime = graphCurrentTime - StartTime;
 
   FirebaseJson valueRange;
-  count++;
 
-  //unsigned long graphCurrentTime = millis();
-  //unsigned long graphElapsedTime = graphCurrentTime - StartTime;
   float test = currentSensor(curSen12v);
-  Serial.println(test);
   int testv2 = test*1000.00;
-  Serial.println(testv2);
+
 
   valueRange.add("majorDimension", "COLUMNS");
   //valueRange.set("values/[0]/[0]", 0);
